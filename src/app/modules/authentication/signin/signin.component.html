@@ -1,0 +1,49 @@
+<div class="content" >
+    <div class="signin">
+        <form *ngIf="!isLoggedIn" [formGroup]="userForm" (ngSubmit)="userForm.valid && onFormSubmit()">
+           <div class="container">
+                     <div class="h1container"  >
+                       <h1>Bienvenue</h1>
+                     </div>
+               <div class="inputcontainer">
+                  <!-- email input-->
+                      <div class="form-group">
+                         <input type="email"  placeholder="Adresse e-mail" formControlName="email">
+                          <div *ngIf="userForm.controls['email'].invalid && userForm.controls['email'].dirty" class="alert alert-danger">
+                             email is invalid
+                           </div>
+                          <div *ngIf="userForm.controls['email'].errors?.['required'] && (userForm.controls['email'].dirty || userForm.controls['email'].touched)" class="alert alert-danger">
+                             email is required.
+                           </div>
+                  <!-- email input-->
+               <!-- pwd input-->
+                       <div class="inputContainer" style="position: relative;">
+                         <i class="icon" [class]="show_eye ? 'fa fa-eye' : 'fa fa-eye-slash'" (click)="showPassword()"></i>
+                         <input class="Field" type="password" placeholder="Mot de passe" formControlName="password" [type]="show_button ? 'text' : 'password'">
+
+                         </div>
+                         <div *ngIf="userForm.controls['password'].invalid && userForm.controls['password'].dirty " class="alert alert-danger">
+                            password must be at least 4 characters long.
+                         </div>
+                         <div *ngIf="userForm.controls['password'].errors?.['required'] && (userForm.controls['password'].dirty || userForm.controls['password'].touched)" class="alert alert-danger">
+                            password is required.
+                         </div>
+                      </div>
+                    </div>
+
+                 <!-- pwd input-->
+                    <div class="btn1">
+                       <button type="submit" [disabled]="!userForm.valid" class="btn">Créez votre compte</button>
+                       <h2><a href="#"> Mot de passe oublié ?</a></h2>
+                       <div class="form-group">
+                           <div class="alert alert-danger" role="alert" *ngIf="isLoginFailed" >Login failed: {{ errorMessage }}</div>
+                      </div>
+                    </div>
+
+           </div>
+
+
+         </form>
+      </div>
+
+</div>

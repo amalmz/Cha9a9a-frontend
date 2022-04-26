@@ -1,0 +1,431 @@
+.box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  h1{
+      font-size: 150px;
+      color: azure;
+      font-family: 'bella-safira';
+      position: relative;
+      line-height: 8rem;
+  }
+  
+  h2 {
+    position: relative;
+    text-align: center;
+    font-size: 5rem;
+    font-family: 'bella-safira';
+    color: #A8587D ;
+    display: flex; 
+    justify-content:center;
+  }
+    /* h2::before {
+      content: "";
+      position: absolute;
+      top: 10rem;
+      width: 29rem;
+      height: 0.3vh;
+      transform: skew(-12deg) translateX(-0%);
+      background: #A8587D;
+      z-index: -1;
+      display: flex; 
+      justify-content:center;
+    } */
+  
+    h3{
+      display: flex; 
+      text-align: center;
+      justify-content: center;
+      color: #A8587D;
+      font-size: 16px;
+      margin: 1rem;
+      font-family: 'dejavu';
+  
+    }
+    .row{
+      display: flex; 
+      justify-content:center;
+      flex-wrap:wrap;
+    }
+   
+    .cards{
+        min-height: 500px;
+        max-width: 300px;
+        background: white;
+        overflow: hidden;
+        border-radius: 10px;
+        cursor: pointer;
+        margin: 20px;
+        box-shadow: 0 0 20px 2px #d0d0d0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+    }
+    .mini-card{
+        height: 60px;
+        width: 279px;
+        width: 300px;
+        background: white;
+        overflow: hidden;
+        border-radius: 10px;
+        cursor: pointer;
+        box-shadow: 0px 0px 10px 2px #d0d0d073;
+        display: flex;
+        justify-content: center;
+        position: absolute;
+        bottom: 0;
+        border: 0.1px solid #0c0c0c3d;
+    }
+    .cards p{
+      font-size: 0.9rem;
+      margin-left: 15px;
+      color: #000000a6;
+      font-weight: 600;
+      font-family: 'dejavu';
+
+
+    }
+    .vertical {
+      border-left: 2px solid rgb(231, 207, 227);
+      height: 40px;
+      margin-top:10px ;
+      margin: 10px}
+  
+      h4{
+        font-size: 0.8rem;
+        color: black;
+        margin-top: 10px;
+        text-align: center;
+        font-family: 'dejavu';
+        font-weight: 700;
+        line-height: 1.5;
+    
+     }
+     h4 span{
+       margin-left: 5px;
+       color: #A8587D;
+       text-align: center;
+  
+     }
+     .btn2{
+      border-radius: 2rem;
+      cursor: pointer; 
+      margin: 20px;
+      border-style: none;
+      width: 15rem;
+      height: 4rem;
+      margin-bottom: 5rem;
+      font-size: 26px;
+      background-color: #A8587D;
+      margin-top: 5rem;
+      border-color: #f8f9fa;
+      color: white;
+      font-family: 'dejavu';
+      
+     }
+     .cards1{
+      height: 400px;
+      width: 900px;
+      background: white;
+      overflow: hidden;
+      border-radius: 10px;
+      cursor: pointer;
+      margin:20px;
+      box-shadow: 4px 4px 9px 6px #d0d0d047;;
+    }
+    .row1{
+        display: flex;
+        flex-direction: row;
+        display: flex; 
+        justify-content: center;
+         margin-top: 5rem; 
+         flex-wrap: wrap; 
+         max-width: 80rem;
+         justify-content: center;
+         margin: auto;
+    }
+    .col{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    }
+    .row2{
+      background-image: linear-gradient(to right, #BFA2DB , #F0D9FF); 
+      background-size :cover ;
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .col1{
+      display: flex;
+      flex-direction: column; 
+      align-items: center; 
+      padding-top: 4rem;
+    }
+    h6{
+      font-size: 45px; 
+      color: white; 
+      font-family: 'bella-safira';
+      line-height: 1rem;
+      text-align: center;
+    }
+    .col2 p{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 35rem;
+      text-align: center;
+      font-size: 25px; 
+      color: white; 
+      line-height: 1.5;
+      font-family: 'dejavu';
+      max-width: 45rem;
+
+    }
+     
+  .image{
+    width: 24rem; 
+    height: 20rem; 
+  }
+  .row3{
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+  } 
+    
+  h5{
+    margin-top: 20px;
+    font-size: 1.2rem;
+    color: #A8587D;
+    text-align: center;
+    font-family: 'dejavu';
+    font-weight: 600;
+  }
+  .col p {
+    text-align: center;
+    color: rgb(119, 118, 118);
+    max-width: 11.6rem;
+    font-family: 'dejavu';
+    font-size: 1rem;
+  }
+
+  
+    *{box-sizing: border-box; -webkit-box-sizing: border-box; }
+    html, body { height: 100%; }
+    body { margin: 0; font: 16px/1.3 sans-serif; }
+    
+    /*
+    PURE RESPONSIVE CSS3 SLIDESHOW GALLERY by Roko C. buljan
+    http://stackoverflow.com/a/34696029/383904
+    */
+    
+    .CSSgal {
+      position: relative;
+      overflow: hidden;
+      height: 100%; /* Or set a fixed height */
+    }
+    
+    
+    /* SLIDER */
+    
+    .CSSgal .slider {
+      height: 100%;
+      white-space: nowrap;
+      font-size: 0;
+      transition: 0.8s;
+      animation: move 3s ease-in-out 3s infinite alternate;
+  
+      
+    }
+    
+    /* SLIDES */
+    
+    .CSSgal .slider > * {
+      font-size: 1rem;
+      display: inline-block;
+      white-space: normal;
+      vertical-align: top;
+      height: 100%;
+      width: 100%;
+      background: none 50% no-repeat;
+      background-size: cover;
+  
+    }
+    
+    /* PREV/NEXT, CONTAINERS & ANCHORS */
+    
+    .CSSgal .prevNext {
+      position: absolute;
+      z-index: 1;
+      top: 50%;
+      width: 100%;
+      height: 0;
+    }
+    
+    .CSSgal .prevNext > div+div {
+      visibility: hidden; /* Hide all but first P/N container */
+    }
+    
+    
+   
+  /* 
+    .CSSgal .prevNext .arrow1{
+      position: absolute;
+      border: solid white;
+      margin-left: 140px;
+      display: inline-block;
+      padding: 25px;
+      border-width: 0 3px 3px 0;
+      transform: rotate(135deg);
+      text-align: center;
+      opacity: 0.7;
+      -webkit-transition: 0.3s;
+                transition: 0.3s;
+      -webkit-transform: translateY(-50%);
+                transform: translateY(-50%);
+                transform: rotate(135deg);
+      left: 0;
+    }
+     
+  
+    .CSSgal .prevNext .arrow2{
+      position: absolute;
+      border: solid white;
+      margin-right: 140px;
+      display: inline-block;
+      padding: 25px;
+      border-width: 0 3px 3px 0;
+      text-align: center;
+      opacity: 0.7;
+      transform: rotate(-45deg);
+      -webkit-transition: 0.3s;
+                transition: 0.3s;
+      -webkit-transform: translateY(-50%);
+                transform: translateY(-50%);
+                transform: rotate(-45deg);
+      left: 0;
+    } */
+    .CSSgal .prevNext a:hover {
+      opacity: 1;
+    }
+    .CSSgal .prevNext a+a {
+      left: auto;
+      right: 0;
+    }
+    
+    /* NAVIGATION */
+    
+    
+    /* More slides? Add here more rules */
+    
+    /* PREV/NEXT CONTAINERS VISIBILITY */
+    /* ALL: */
+    /* ACTIVE: */
+    #s1:target ~ .prevNext >*:nth-child(1) {visibility: visible;}
+    #s2:target ~ .prevNext >*:nth-child(2) {visibility: visible;}
+  
+    /* More slides? Add here more rules */
+    
+    /* SLIDER ANIMATION POSITIONS */
+    
+    #s1:target ~ .slider {transform: translateX(   0%); -webkit-transform: translateX(   0%);}
+    #s2:target ~ .slider {transform: translateX(-100%); -webkit-transform: translateX(-100%);}
+   
+    /* More slides? Add here more rules */
+    
+    
+    /* YOU'RE THE DESIGNER! 
+       ____________________
+       All above was mainly to get it working :)
+       CSSgal CUSTOM STYLES / OVERRIDES HERE: */
+    
+    .CSSgal{
+      color: #fff;  
+      text-align: center;
+    }
+    .CSSgal .slider h2 {
+      margin-top: 40vh;
+      font-weight: 200;
+      letter-spacing: -0.06em;
+      word-spacing: 0.2em;
+      font-size: 3em;
+    }
+    .CSSgal a {
+      margin: 0 3px;
+      color: rgba(0,0,0,0.8);
+      text-decoration: none;
+    }
+  
+   
+  
+    @keyframes move {
+      0%,30% { transform: translateX(0); }
+     80%,100% { transform: translateX(-100%); }
+    }
+   
+    @media (max-width: 480px){
+      .cards1{
+         height:auto;
+         width:auto;
+      }
+      h1{
+        font-size: 70px;
+      }
+      .image{
+        height: auto;
+        width: auto;
+      }
+      
+      
+    }
+    @media (max-width: 768px){
+      .cards1{
+         height:auto;
+         width:auto;
+      }
+      h1{
+        font-size: 70px;
+      }
+      h2{
+        font-size: 3rem;
+      }
+      h2::before{
+        top: 8rem;
+        width: 20rem;
+      }
+      .image{
+        height: auto;
+        width: 20rem;
+      }
+      
+    }
+  
+    @media (max-width: 1200px){
+      .cards1{
+         height:auto;
+         width:auto;
+      }
+      h1{
+        font-size: 70px;
+      }
+      .image{
+        height: auto;
+        width: auto;
+      }
+      h2{
+        font-size: 3rem;
+      }
+      h2::before{
+        top: 8rem;
+        width: 20rem;
+      }
+      
+      
+    }
+  
+  
+   

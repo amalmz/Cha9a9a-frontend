@@ -1,0 +1,21 @@
+.btn {
+    border-radius: 20px!important;
+    height: 40px;
+    width: 150px;
+    margin: 20px;
+    border-style: none;
+    font-family: 'dejavu';
+    font-weight: 600;
+  
+  }
+  .btn:hover{
+    background-color: #A8587D;
+    color: white;
+
+  }
+  
+  .active , .btn:focus{
+    background-color: #A8587D;
+    color: white;
+  border-color: white;
+  }

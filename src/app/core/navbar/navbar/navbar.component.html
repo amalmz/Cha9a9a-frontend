@@ -1,0 +1,90 @@
+<nav class="navbar" style="width: auto; background-color: #BFA2DB; ">
+
+    <div class="navbar-links" >
+          <ul style="position: absolute; z-index: 100; padding-top: 1rem; " >
+        <li >
+          <a class="nav-link" href="#" routerLink="/allcampaigns" style=" color: rgb(255, 255, 255)!important;
+          padding-top: 1.3rem;">Toutes les collectes</a>
+        </li>
+        <li >
+          <a class="nav-link" href="#" style=" color: rgb(255, 255, 255)!important;  padding-top: 1.3rem; ">News</a>
+        </li>
+        <li>
+          <a href="/home">
+          <img src="../../assets/images/MicrosoftTeams-image.png" >
+        </a>
+        </li>
+        <li >
+            <a class="nav-link" href="#" style="color: rgb(255, 255, 255)!important;  padding-top: 1.3rem;">Contact</a>
+        </li>
+          <li >
+            <a class="nav-link" href="#" style=" color: rgb(255, 255, 255)!important;  padding-top: 1.3rem;">Créer une collecte</a>
+          </li>
+
+          <ul style="position: absolute;right: -27vw;" >
+          <li *ngIf="!isLoggedIn">
+             <div class="dropdown" >
+               <span>Connexion <i style="font-size: 1.8rem;vertical-align: middle;" class='fas fa-user-circle'></i></span>
+             <div class="dropdown-content">
+             <a class="dropdown-item" href="/signin" >Connexion</a> 
+             <a class="dropdown-item" href="/signup">Inscription</a>
+
+              </div>
+                </div>
+          </li>
+      <li *ngIf="isLoggedIn">
+        <a href style="color: white; padding-top: 20px; " class="nav-link" (click)="logout()"><i style="font-size: 1.4rem;vertical-align: middle;margin-right: 0.3rem;"   class="fas fa-sign-out-alt"></i>LogOut</a>
+      </li>
+          <li>
+            <div class="vertical"></div>
+          </li>
+          <li>
+            <img src="../../../../assets/images/icons8-great-britain-48.png">
+          </li>
+          <li >
+            <img src="../../../../assets/images/icons8-france-48.png">
+          </li>
+        </ul>
+
+    </ul>
+  </div>
+
+
+  </nav>
+
+  <nav class="nav2" role="navigation">
+    <div class="container">
+        <div id="menuToggle">
+           <input type="checkbox" />
+              <span></span>
+              <span></span>
+             <span></span>
+          <ul id="menu">
+            <a href="/accueil"><li>Accueil</li></a>
+            <a href="/collect"><li>Toutes les collectes </li></a>
+            <a href="#"><li>News</li></a>
+            <a href="#"><li>Créer une collecte</li></a>
+            <a href="#"><li>Contact</li></a> 
+              <li *ngIf="!isLoggedIn">
+                <div class="dropdown1">
+                  <button class="btn"><i class="fas fa-user" style="padding-right:0.5rem"></i>Connexion
+                    <i class="fa fa-caret-right"></i>
+                  </button>
+                  <div class="dropdown-menu">
+                    <a  href="/signin">Connexion</a>
+                    <a  href="/signup">Inscription</a>
+                  </div>
+                  </div>
+                </li>
+                <li  *ngIf="isLoggedIn">
+                  <a class="nav-link" (click)="logout()"><i class="fa fa-sign-out" aria-hidden="true"></i> LogOut</a>
+                </li>
+
+           </ul>
+         </div>
+
+    </div>
+ </nav>
+
+
+ 

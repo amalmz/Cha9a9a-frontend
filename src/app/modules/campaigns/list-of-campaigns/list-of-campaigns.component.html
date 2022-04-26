@@ -1,0 +1,127 @@
+
+<div>
+    <div class="quarter-ellipse quarter-ellipse3" style="display: flex; justify-content: center;">
+     <h1>Toutes les collectes</h1>
+    </div>
+    
+    <div class="container" >
+           <!-- <div class="buttons" style="display: flex; justify-content: center; flex-direction: row; flex-wrap: wrap; margin-top: 3rem;">
+              <button routerLink="/allcampaigns" [class.active]="!category" type="button" class="btn" >All  </button>
+              <div *ngFor="let c of Category " >
+                     <button routerLink="/allcampaigns" [class.active]="category === c.name" [queryParams]="{category:c.name}" type="button"class="btn">{{c.name}}</button>
+               </div>
+           </div>  -->
+           
+         <!-- <div id="cover">
+            <form method="get" >
+              <div class="tb">
+                <div class="td"><input type="text" name="search" placeholder="Search" [(ngModel)]="term" required ></div>
+              </div>
+            </form>
+          </div>  -->
+           <div class="row1" >
+              <div *ngFor="let campaign of Campaign | paginate: { itemsPerPage: limit, currentPage: page ,totalItems: total};"  class="cards"(click)="onSelect(campaign)">
+                   <img  style="width:280px; height:200px; margin-top: 12px; " src="{{url+campaign.image}}" class="img-fluid rounded-circle w-60"  >
+                  <h3 > {{campaign.name}} </h3>
+                  <p>{{campaign.description| slice:0:200}}...</p>
+                  <div class="mini-card"  >
+                      <h4>Objectif<br> <span>{{campaign.objective}} DT</span></h4>
+                      <div class="vertical"></div> 
+                      <h4>Collecté <br> <span>5000 DT</span></h4>
+                      <div class="vertical"></div>
+                      <h4>Participants <br> <span>5000 DT</span></h4>
+                  </div>  
+              </div>
+           </div>
+           <div style=" display: flex;justify-content: flex-end;margin-right: 14rem;">
+              <pagination-controls previousLabel="Prev" nextLabel="Next"  (pageChange)="getPage($event)"></pagination-controls>
+          </div>           
+      <div class="row">
+        <!-- <app-shared-button (onClick)="functioncall($event)" [label]="'Education'"></app-shared-button>
+        <app-shared-button (onClick)="functioncall($event)"[label]="'Santé'" > </app-shared-button>
+        <app-shared-button (onClick)="functioncall($event)" [label]="'Fond publiques'"></app-shared-button>
+        <app-shared-button (onClick)="functioncall($event)"[label]="'Environnement'" > </app-shared-button>
+        <app-shared-button (onClick)="functioncall($event)"[label]="'Association'" > </app-shared-button> -->
+       </div> 
+      <!-- <div class="row1" >
+         <div class="cards" >
+              <img  style=" margin-top:10px;" src="../../assets/images/1.png" width="200px" height="200px" >
+             <h3> Project 1</h3>
+             <p>Description projet Description projet Description projet Description projet Description projet Description projet</p>
+             <div class="mini-card" >
+                 <h4>Objectif<br> <span>5000 DT</span></h4>
+                 <div class="vertical"></div>
+                 <h4>Collecté <br> <span>5000 DT</span></h4>
+                 <div class="vertical"></div>
+                 <h4>Participants <br> <span>5000 DT</span></h4>
+             </div>
+
+         </div>
+        <div class="cards">
+          <img  style="  margin-top:10px;" src="../../assets/images/1.png" width="200px" height="200px" >
+             <h3> Project 2</h3>
+             <p style="font-size: 15px; margin-left: 15px;color: #000000a6;">Description projet Description projet Description projet Description projet Description projet Description projet</p>
+             <div class="mini-card" >
+                 <h4>Objectif<br> <span>5000 DT</span></h4>
+                 <div class="vertical"></div>
+                 <h4>Collecté <br> <span>5000 DT</span></h4>
+                 <div class="vertical"></div>
+                 <h4>Participants <br> <span>5000 DT</span></h4>
+             </div>
+         </div>
+        <div class="cards">
+          <img  style="  margin-top:10px;" src="../../assets/images/1.png" width="200px" height="200px" >
+          <h3> Project 3</h3>
+          <p style="font-size: 15px; margin-left: 15px;color: #000000a6;">Description projet Description projet Description projet Description projet Description projet Description projet</p>
+          <div class="mini-card" >
+              <h4>Objectif<br> <span>5000 DT</span></h4>
+              <div class="vertical"></div>
+              <h4>Collecté <br> <span>5000 DT</span></h4>
+              <div class="vertical"></div>
+              <h4>Participants <br> <span>5000 DT</span></h4>
+          </div>
+         </div>
+         <div class="cards">
+          <img  style="  margin-top:10px;" src="../../assets/images/1.png" width="200px" height="200px" >
+          <h3> Project 3</h3>
+          <p style="font-size: 15px; margin-left: 15px;color: #000000a6;">Description projet Description projet Description projet Description projet Description projet Description projet</p>
+          <div class="mini-card" >
+              <h4>Objectif<br> <span>5000 DT</span></h4>
+              <div class="vertical"></div>
+              <h4>Collecté <br> <span>5000 DT</span></h4>
+              <div class="vertical"></div>
+              <h4>Participants <br> <span>5000 DT</span></h4>
+          </div>
+         </div>
+         <div class="cards">
+          <img  style="  margin-top:10px;" src="../../assets/images/1.png" width="200px" height="200px" >
+          <h3> Project 3</h3>
+          <p style="font-size: 15px; margin-left: 15px;color: #000000a6;">Description projet Description projet Description projet Description projet Description projet Description projet</p>
+          <div class="mini-card" >
+              <h4>Objectif<br> <span>5000 DT</span></h4>
+              <div class="vertical"></div>
+              <h4>Collecté <br> <span>5000 DT</span></h4>
+              <div class="vertical"></div>
+              <h4>Participants <br> <span>5000 DT</span></h4>
+          </div>
+         </div>
+         <div class="cards">
+          <img  style="  margin-top:10px;" src="../../assets/images/1.png" width="200px" height="200px" >
+          <h3> Project 3</h3>
+          <p style="font-size: 15px; margin-left: 15px;color: #000000a6;">Description projet Description projet Description projet Description projet Description projet Description projet</p>
+          <div class="mini-card" >
+              <h4>Objectif<br> <span>5000 DT</span></h4>
+              <div class="vertical"></div>
+              <h4>Collecté <br> <span>5000 DT</span></h4>
+              <div class="vertical"></div>
+              <h4>Participants <br> <span>5000 DT</span></h4>
+          </div>
+         </div>
+
+      </div> -->
+<!--     
+      <div style="display: flex; justify-content: center;">
+       <button  type="button" routerLink="/collect" class="btn2">Voir Plus</button>
+     </div> -->
+
+</div>

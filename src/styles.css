@@ -1,1 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
+@font-face {
+    font-family: "bella-safira";
+    src: url("assets/fonts/bella_safira/Bella Safira.otf");
+    font-weight: normal;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: "dejavu";
+    src: url("assets/fonts/DejaVu_Sans/DejaVuSans-ExtraLight.ttf");
+    font-weight: normal;
+    font-style: normal;
+  }
+body{
+    margin: auto;
+}
+html, body { height: 100%;  }

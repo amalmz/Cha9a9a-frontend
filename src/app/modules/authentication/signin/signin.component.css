@@ -1,0 +1,137 @@
+.content{
+  background-image: linear-gradient(360deg, #F0D9FF ,#BFA2DB, #BFA2DB );
+  height: 100%; 
+}
+input{
+    background: rgba(255,255,255,0.4);
+    border: none;
+    display: block;
+    outline: none;
+    width: 16.5rem;
+    padding: 0.7rem;
+    color: #333;
+    border-radius: 10px;
+    border: 2px solid rgb(255, 255, 255);
+    margin-bottom: 1.5rem;
+    font-family: 'dejavu';
+    font-weight: 800;
+    font-size: 0.9rem;
+    
+    
+    
+    }
+    input:focus::placeholder {
+      color: transparent;
+    }
+    ::-webkit-input-placeholder { color:#000000b0; text-align: center;} 
+    :-moz-placeholder { color:#000000b0;text-align: center;  }
+    ::-moz-placeholder { color: #000000b0; text-align: center;  }
+    :-ms-input-placeholder { color: #000000b0;text-align: center;  
+    }
+    
+    
+    .alert-danger{
+      color: #bf0909;
+      border-color: #dc3545;
+      max-width: 16rem;
+      MARGIN-TOP: -1REM;
+      padding: 0.6rem;
+    }
+    
+    .signin{
+      display: flex;
+      justify-content: center;
+    
+    }
+    
+    
+    h1{
+      display: flex;
+      justify-content: center;
+      font-size: 3rem;  
+      color: white;
+      font-family: 'dejavu';
+      font-weight: 100;
+      
+    
+    }
+    .inputcontainer{
+      padding: 3rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    .container{
+      display: flex;
+      flex-direction: column;
+      position: absolute;
+      left: 0;
+      top: 50%;
+      right: 0;
+      transform: translate(0%, -50%);}
+    
+    .btn {
+      border-radius: 10px;
+      width: 16.6rem;
+      padding: 0.8rem;
+       border: none;
+        font-family: 'dejavu';
+        cursor: pointer;
+        font-weight: 700;
+        --hover: #794cc1;
+        color: var(--color);
+        transition: 0.25s; 
+
+
+    }   
+    .btn:hover:not([disabled]),
+    .btn:focus:not([disabled]) {
+       box-shadow: 
+      inset -8.4rem 0 0 0 var(--hover),
+      inset 8.3rem  0 0 0 var(--hover);  
+      border-color: var(--hover);
+      color: #fff;
+    }
+    .btn1{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    h2{
+       display: flex;
+       justify-content: center;
+    }
+    a{
+      color: #f2f2f3;
+    font-size: 0.9rem;
+    text-decoration: none;
+    font-family: 'dejavu';
+    }
+    .inputContainer i {
+      position: absolute;
+    }
+    
+    .icon {
+      color: rgb(49, 0, 128);
+      font-size: 18px;
+      top: 11px;
+      bottom: 0;
+      right: 16px;
+    }
+    
+    
+    @media (max-width:768px){
+     
+      input{
+       padding: 0.5rem;
+      }
+     
+    
+    }
+     
+    
+    
+    
+    

@@ -1,0 +1,70 @@
+<ng-template #nocampaign>
+   <h2>No Campaign to display</h2>
+</ng-template>
+
+<div *ngIf="campaign;else nocampaign">
+<div class="quarter-ellipse quarter-ellipse3">
+   <div class="row">
+     <div class="cards">
+        <img class="image1" src="{{url+campaign.image}}">
+     </div>
+     <div class="col">
+       <h1>{{campaign.name}}</h1>
+       <h2>Bénéficiaire: <span>beneficaire</span></h2>
+       <h2>Objectif: <span>{{campaign.objective}}DT</span></h2>
+       <h2>collecté: <span>5 000 DT</span></h2>
+         <div class="buttons">
+            <button class="btn">Partager</button>
+            <button class="btn">Soutenir</button>
+         </div>
+     </div>
+   </div>
+</div>
+
+<div class="col2">
+   <div class="center">
+    <h3>Description du Project</h3>
+    <img class="image2"  src="{{url+campaign.image}}">
+    <p>{{campaign.description}}</p>
+    <div  class="buttons">
+       <button class="btn1">Partager</button>
+       <button class="btn1">Soutenir</button>
+    </div>
+   </div>
+     <div class="col1">
+          <h4>Organisateur</h4><br>
+      <div class="row2">
+         <img class="image3" src="../../../../assets/images/avatar.png">
+        <div class="col" *ngIf="users">
+            <h5>Organisator</h5>
+            <h5>{{users.name}} </h5>
+          </div>
+         <button class="btn2">Contacter</button>
+       </div>
+     </div>
+    <div class="col">
+      <h4>Commentaires</h4>
+      <span class="p-float-label">
+         <textarea id="float-input" rows="5" cols="81" pInputTextarea #comment></textarea>
+         <label for="float-input">Add a comment ....</label>
+      </span>
+      <!-- <button class="btn3" (click)="addComment(comment.value)">Send</button> -->
+          <div class="comment" *ngFor="let comment of comments">
+               <div class="commentcontent">
+                  <img style="width: 3rem;" src="../../../../assets/images/avatar.png">
+                     <h6 style="font-size: 1rem;font-family: 'dejavu';">{{comment.user.name}}</h6>
+                     <h6 style="font-size: 0.5rem; font-family: 'dejavu';margin-left: 1rem;">{{comment.createdAt | date:'short'}}</h6>
+                     <div class="icons">
+                        <i class="pi pi-trash" style="cursor:pointer;color: rgb(153, 27, 27);padding-right: 0.5rem;"></i>
+                        <i class="fas fa-edit" style="cursor:pointer;color: #297aff;"></i>                    </div>
+               </div>
+                <div class="parag">
+                 <p style="margin-top: -1rem">{{comment.text}}</p>
+               </div>
+          </div>
+    </div>
+</div>
+</div>
+
+
+
