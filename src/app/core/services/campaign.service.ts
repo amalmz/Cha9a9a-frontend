@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Campaign } from '../models/campaign';
 
@@ -10,6 +10,7 @@ import { Campaign } from '../models/campaign';
 
 export class CampaignService {
 private apiServerUrl = environment.apiBaseUrl;
+public search = new BehaviorSubject<string>("")
 
   constructor(private http:HttpClient) { }
 public getCampaigns(page:number,limit:number): Observable<Campaign[]> {
@@ -22,5 +23,9 @@ public getCampaignById(id: string): Observable<Campaign> {
   let API_URL = `${this.apiServerUrl}/campaign/${id}`;
   return this.http.get<Campaign>(API_URL);
 }
+// public getCommentByCampain(id:string): Observable<Campaign[]> {
+//   return this.http.get<Campaign[]>(`${this.apiServerUrl}/campaign/${id}/comments`)
+
+// }
 
 }

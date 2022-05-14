@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs';
 import { CategoryService } from 'src/app/core/services/category.service';
 import { CampaignService } from 'src/app/core/services/campaign.service';
 import { Campaign } from 'src/app/core/models/campaign';
+import { Category } from 'src/app/core/models/category';
 @Component({
   selector: 'app-list-of-campaigns',
   templateUrl: './list-of-campaigns.component.html',
@@ -13,7 +14,11 @@ import { Campaign } from 'src/app/core/models/campaign';
 export class ListOfCampaignsComponent implements OnInit {
   label :string=""
   Campaign:Campaign[]=[] ;
-  Category:any[]=[] ;
+  Category:any ;
+  selected!:any;
+  valueIconRight: any;
+  searchkey:string="";
+  searchTerm:string="";
   filteredCollect:any[]=[];
   image:string="";
   category:any;
@@ -23,7 +28,7 @@ export class ListOfCampaignsComponent implements OnInit {
   subscription!: Subscription ;
   selectedCampaign!: Campaign;
   page: number = 1;
-  limit: number = 3;
+  limit: number = 9;
   total: number = 0;
   constructor(private route :ActivatedRoute, private campaignService :CampaignService, private categoryService :CategoryService, private router:Router) { }
 
@@ -34,6 +39,8 @@ export class ListOfCampaignsComponent implements OnInit {
   ngOnInit(): void {
     this.getCampaigns();
     this.getCategories();
+    this.campaignService.search.subscribe((val:any)=>
+      this.searchkey=val)
   }
   public getCampaigns(): void {
     this.subscription = this.campaignService.getCampaigns(this.page,this.limit).subscribe(
@@ -43,14 +50,21 @@ export class ListOfCampaignsComponent implements OnInit {
         this.total= response["total"];
         console.log("total",this.total);
         console.log("campaign",this.Campaign);
-
+        
         this.route.queryParamMap.subscribe(params=>{
           this.category= params.get('category');
           console.log("category",this.category);
           this.filteredCollect = (this.category)? 
-          this.Campaign.filter(p => p.category === this.category.name) : this.Campaign ; //p.category so even if the category is null (bich maya3mach error)
+          this.filteredCollect.filter(p => p.category && p.category.name=== this.category) : this.Campaign ; //p.category so even if the category is null (bich maya3mach error)
           console.log("filteredCollect",this.filteredCollect);
         });
+      //   this.route.queryParamMap.subscribe(params=>{
+      //     this.category= params.get('category');
+      //    console.log("category",this.category);
+      //    this.filteredCollect = (this.category)? 
+      //    this.Campaign.filter(p => p.category === this.category.name) : this.Campaign ; //p.category so even if the category is null (bich maya3mach error)
+      //    console.log("filteredCollect",this.filteredCollect);
+      //  });
       },
       
       (error: HttpErrorResponse) => {
@@ -80,5 +94,15 @@ getPage(event: any) {
   ngOnDestroy() : void{
     this.subscription.unsubscribe(); // bich ki yfirtli mayni7ich il be9i  
   }
-
+  search(event:any){
+    this.searchTerm =(event.target as HTMLInputElement).value ; 
+    console.log(this.searchTerm);
+    this.campaignService.search.next(this.searchTerm);
+  }
+  //   filter(){
+  //   this.filteredCollect = this.category?  this.filteredCollect.filter(p => p.category && p.category.name=== this.category) :  this.filteredCollect ;
+  //   //p.category so even if the category is null (bich maya3mach error)
+  //    console.log("filteredCollect",this.filteredCollect);
+  // }
+  
 }

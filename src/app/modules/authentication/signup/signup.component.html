@@ -48,7 +48,7 @@
         </div>
         <div class="row" >
           <div class="col" >
-            <i class="icon" style="position: absolute;" [class]="show_eye ? 'fa fa-eye' : 'fa fa-eye-slash'" (click)="showPassword()"></i>
+            <i class="icon" style="position: absolute;" [class]="show_eye ? 'pi pi-eye' : 'pi pi-eye-slash'" (click)="showPassword()"></i>
           <input formControlName="password" type="password" placeholder="Mot de passe" [type]="show_button ? 'text' : 'password'" required> 
           <div *ngIf="signUpForm.controls['password'].errors?.['required'] && (signUpForm.controls['password'].dirty || signUpForm.controls['password'].touched)" class="alert1" >
             password is required.
@@ -58,7 +58,7 @@
           </div> 
         </div>
           <div class="col">
-            <i class="icon" style="position: absolute;" [class]="show_eye ? 'fa fa-eye' : 'fa fa-eye-slash'" (click)="showPassword()"></i>
+            <i class="icon" style="position: absolute;" [class]="show_eye ? 'pi pi-eye' : 'pi pi-eye-slash'" (click)="showPassword()"></i>
           <input  type="password" formControlName="confirmPassword" placeholder="répéter Mot de passe" [type]="show_button ? 'text' : 'password'" required>
           <div *ngIf="signUpForm.controls['confirmPassword'].errors?.['required'] && (signUpForm.controls['confirmPassword'].dirty || signUpForm.controls['confirmPassword'].touched)" class="alert1" >
             confirm Password is required.

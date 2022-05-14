@@ -3,6 +3,9 @@ import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from '../../../core/services/auth.service';
 import { MustMatch } from '../../../core/helpers/must-match.validator';
 import {Router} from "@angular/router";
+import { User } from 'src/app/core/models/user';
+import { TokenStorageService } from 'src/app/core/services/token-storage.service';
+
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
@@ -18,10 +21,10 @@ export class SignupComponent implements OnInit {
   show_button: Boolean = false;
   show_eye: Boolean = false;
   
-  constructor( private formBuilder : FormBuilder, private router : Router , private authService :AuthService) {}
+  constructor( private formBuilder : FormBuilder, private router : Router , private authService :AuthService
+    ,private tokenStorage:TokenStorageService) {}
 
   ngOnInit(): void {
-    console.log("sign-upppppp");
     this.signUpForm= this.formBuilder.group({
       lastname:  new FormControl('',Validators.required),
       name:new FormControl('',Validators.required),
@@ -40,11 +43,10 @@ export class SignupComponent implements OnInit {
 
     this.authService.register(name,lastname,tel,email, password).subscribe(
       data => {
-        console.log(data);
+        this.tokenStorage.saveUser(data);
         this.isSuccessful = true;
         this.isSignUpFailed = false;
-        alert("user successfuly registred")
-        this.router.navigate(['/signin']);
+        this.router.navigate(['/verify']);
 
       },
       err => {

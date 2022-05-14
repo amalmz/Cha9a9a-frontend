@@ -215,10 +215,11 @@
   
   }
   .icon {
-    padding-top: 1.6rem;
+    padding-top: 1.5rem;
     margin-left: 15rem;
     color: rgb(49, 0, 128);
-    font-size: 18px;
+    font-size: 20px;
+    font-weight: 800;
    }
    
   

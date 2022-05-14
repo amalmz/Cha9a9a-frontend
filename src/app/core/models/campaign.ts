@@ -6,4 +6,5 @@ export interface Campaign {
     image: string;
     category :string;
     created_by:string;
+    comments:any[]
   }

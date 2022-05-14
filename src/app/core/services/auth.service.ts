@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import{ HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-
+import {TokenStorageService} from '../services/token-storage.service';
+ 
 const AUTH_API = 'http://localhost:5000/';
 
 const httpOptions = {
@@ -15,7 +16,7 @@ const httpOptions = {
 
 export class AuthService {
 
-  constructor(private http:HttpClient) {}
+  constructor(private http:HttpClient, private tokenStorage:TokenStorageService) {}
   login(email:string,password:string): Observable<any> {
     return this.http.post(AUTH_API + 'signin', {
       email,
@@ -30,5 +31,8 @@ export class AuthService {
       email,
       password
      },httpOptions)
+  }
+  verifyOtp(userId:String,otp:String){
+    return this.http.post(AUTH_API+'verifyOTP',{userId,otp},httpOptions)
   }
 }

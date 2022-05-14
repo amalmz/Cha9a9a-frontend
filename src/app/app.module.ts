@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomePageComponent } from './modules/home/home-page/home-page.component';
@@ -10,11 +9,14 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AuthenticationModule } from './modules/authentication/authentication.module';
 import { CampaignsModule } from './modules/campaigns/campaigns.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { NgxPaginationModule } from 'ngx-pagination';
-
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AuthInterceptorService } from './core/interceptors/auth-interceptor.service';
+import { TokenStorageService } from './core/services/token-storage.service'
+import{authInterceptorProviders} from './core/interceptors/auth-interceptor.service'
+import {CommentService}from './core/services/comment.service';
 
 @NgModule({
   declarations: [
@@ -34,14 +36,23 @@ import { NgxPaginationModule } from 'ngx-pagination';
     HttpClientModule, 
     RouterModule,
     NgxPaginationModule,
+    BrowserAnimationsModule,
+
+  
+    
 
     
   ],
   exports:[
     NgxPaginationModule,
   ],
+
+  providers: [
+    authInterceptorProviders,
+    CommentService
+  ],
   
-  providers: [],
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }

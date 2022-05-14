@@ -187,7 +187,7 @@ h5{
 .comment{
   background-color: #b7b5b526;
   width: 40rem;
-  margin-top: 2rem;
+  margin-top: 1rem;
   height: auto;
   display: flex;
   flex-direction: column;
@@ -207,4 +207,7 @@ h5{
 .icons{
   position: absolute;
   right: 1rem;
+}
+::ng-deep .p-dialog .p-dialog-header {
+  padding-bottom: 3rem;
 }

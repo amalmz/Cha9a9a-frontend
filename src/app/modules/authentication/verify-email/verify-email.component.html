@@ -1,0 +1,28 @@
+<div class="content" >
+    <div  class="signin">
+        <form  *ngIf="!isSuccessful" [formGroup]="verifyForm" (ngSubmit)="verifyForm.valid && verify()">
+           <div class="container">
+                <div class="h1container"  >
+                  <h1>Enter your verification code</h1>
+                   <p>We have sent a verification code to your email</p>
+                 </div>
+               <div class="inputcontainer">
+                 <div class="form-group">
+                  <input type="text" formControlName="number1" maxlength="1" required>
+                  <input type="text" formControlName="number2"  maxlength="1" required>
+                  <input type="text" formControlName="number3" maxlength="1" required>
+                  <input type="text" formControlName="number4" maxlength="1" required>
+                 </div>
+                </div>
+                <div class="btn1">
+                    <button type="submit" [disabled]="!verifyForm.valid" class="btn">Submit</button>
+                     <div class="form-group">
+                        <div class="alert" *ngIf="isSignUpFailed" role="alert" > Code failed: {{ errorMessage }}</div>
+                   </div> 
+                 </div>
+            </div>
+
+         </form>
+      </div>
+
+</div>

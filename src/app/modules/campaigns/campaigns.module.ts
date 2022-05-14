@@ -4,18 +4,40 @@ import { ListOfCampaignsComponent } from './list-of-campaigns/list-of-campaigns.
 import { SingleCampaignPageComponent } from './single-campaign-page/single-campaign-page.component';
 import {InputTextareaModule} from 'primeng/inputtextarea';
 import { NgxPaginationModule } from 'ngx-pagination';
-
+import { MessagesModule } from 'primeng/messages';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import {ToastModule} from 'primeng/toast';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {DialogModule} from 'primeng/dialog';
+import { InputTextModule } from "primeng/inputtext";
+import {DropdownModule} from 'primeng/dropdown';
+import { FilterPipe } from '../../shared/pipes/filter.pipe';
 
 
 @NgModule({
   declarations: [
     ListOfCampaignsComponent,
-    SingleCampaignPageComponent
+    SingleCampaignPageComponent,
+    FilterPipe,
+
   ],
   imports: [
     CommonModule,
     InputTextareaModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    ConfirmDialogModule,
+    MessagesModule,
+    ToastModule,
+    ReactiveFormsModule,
+    FormsModule,
+    DialogModule,
+    InputTextModule,
+    DropdownModule
+
+  ],
+  exports:[
+    ListOfCampaignsComponent,
+    SingleCampaignPageComponent,
   ]
 })
 export class CampaignsModule { }

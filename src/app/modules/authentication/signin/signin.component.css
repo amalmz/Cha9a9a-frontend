@@ -114,8 +114,10 @@ input{
     }
     
     .icon {
+      position: absolute;
       color: rgb(49, 0, 128);
-      font-size: 18px;
+      font-size: 20px;
+      font-weight: 800;
       top: 11px;
       bottom: 0;
       right: 16px;

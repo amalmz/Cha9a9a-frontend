@@ -40,8 +40,9 @@ export class SigninComponent implements OnInit {
         this.tokenStorage.saveUser(data);
         this.isLoginFailed = false;
         this.isLoggedIn = true;
-        this.route.navigateByUrl("/home");
-    
+        this.route.navigateByUrl("/home").then(() => {
+          window.location.reload();
+        });
       },
       err => {
         this.errorMessage = err.error.message;

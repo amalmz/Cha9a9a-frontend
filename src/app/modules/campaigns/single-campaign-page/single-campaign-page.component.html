@@ -39,29 +39,63 @@
             <h5>Organisator</h5>
             <h5>{{users.name}} </h5>
           </div>
-         <button class="btn2">Contacter</button>
+         <button (click)="showBasicDialog()" class="btn2">Contacter</button>
+         <p-dialog header="Send a message" [(visible)]="displayBasic" [style]="{width: '40vw'}" [baseZIndex]="10000">
+            <div style="display: flex; flex-direction: column;align-items: center;">
+               <input style="margin-bottom: 1rem;width: 25rem;" placeholder="email" type="text" pInputText />
+              <textarea style="width: 25rem;" placeholder="textarea" type="text"  pInputTextarea></textarea>
+            </div>
+            <ng-template pTemplate="footer">
+                <p-button (click)="displayBasic=false" label="Send" styleClass="p-button-text"></p-button>
+            </ng-template>
+        </p-dialog>
        </div>
      </div>
     <div class="col">
       <h4>Commentaires</h4>
-      <span class="p-float-label">
-         <textarea id="float-input" rows="5" cols="81" pInputTextarea #comment></textarea>
-         <label for="float-input">Add a comment ....</label>
-      </span>
-      <!-- <button class="btn3" (click)="addComment(comment.value)">Send</button> -->
-          <div class="comment" *ngFor="let comment of comments">
+      <form [formGroup]="CommentForm" (ngSubmit)="CommentForm.valid && addComment()">
+        <span class="p-float-label">
+          <textarea id="float-input" formControlName="text" rows="5" cols="81" pInputTextarea #comment></textarea>
+          <label for="float-input">Add a comment ....</label>
+         </span>
+         <div *ngIf="CommentForm.controls['text'].errors?.['required'] && (CommentForm.controls['text'].dirty || CommentForm.controls['text'].touched)" class="alert1" >
+            text is required.
+          </div>
+        <button class="btn3" type="submit" [disabled]="!CommentForm.valid" >Send</button> 
+     </form>
+          <div class="comment" *ngFor="let comment of Comments | paginate: {itemsPerPage: Size,currentPage: page,totalItems: count};let i = index">
                <div class="commentcontent">
                   <img style="width: 3rem;" src="../../../../assets/images/avatar.png">
-                     <h6 style="font-size: 1rem;font-family: 'dejavu';">{{comment.user.name}}</h6>
+                     <h6 style="font-size: 1rem;font-family: 'dejavu';">{{comment.user_id.name}}</h6>
                      <h6 style="font-size: 0.5rem; font-family: 'dejavu';margin-left: 1rem;">{{comment.createdAt | date:'short'}}</h6>
-                     <div class="icons">
-                        <i class="pi pi-trash" style="cursor:pointer;color: rgb(153, 27, 27);padding-right: 0.5rem;"></i>
-                        <i class="fas fa-edit" style="cursor:pointer;color: #297aff;"></i>                    </div>
+                     <div class="icons" *ngIf="comment.user_id._id === idcreator">
+                        <i (click)="confirm2(comment._id)" class="pi pi-trash" style="cursor:pointer;color: rgb(153, 27, 27);padding-right: 0.5rem;"></i>
+                        <i (click)="toDisplay[i] = !toDisplay[i] "  class="pi pi-pencil" style="cursor:pointer;color: #297aff;"></i>
+                        </div>
                </div>
                 <div class="parag">
-                 <p style="margin-top: -1rem">{{comment.text}}</p>
+                   <div *ngIf="toDisplay[i]">
+                     <form [formGroup]="CommentForm" >
+                      <textarea formControlName="text" rows="5" cols="50" pInputTextarea #comment></textarea>
+                       <div *ngIf="CommentForm.controls['text'].errors?.['required'] && (CommentForm.controls['text'].dirty || CommentForm.controls['text'].touched)" class="alert1" >
+                        text is required.
+                      </div>
+                      <i class="pi pi-check" type="submit"  style="font-size: 1.5rem;color: green;margin-left: 24rem;cursor: pointer;"></i>
+                     </form>
+                     </div>
+                 <p *ngIf="!toDisplay[i]" style="margin-top: -1rem">{{comment.text}}</p>
                </div>
           </div>
+         <div style="position: absolute; right: 0;bottom: 1rem;">
+            <pagination-controls
+            previousLabel="Prev"
+            nextLabel="Next"
+            (pageChange)="onDataChange($event)"
+          >
+          </pagination-controls>
+         </div>
+          <p-confirmDialog  key="Dialog" [style]="{width: '50vw'}" [baseZIndex]="10000" rejectButtonStyleClass="p-button-text"></p-confirmDialog>
+          <p-toast></p-toast>
     </div>
 </div>
 </div>

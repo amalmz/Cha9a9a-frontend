@@ -5,6 +5,17 @@
     </div>
     
     <div class="container" >
+            <div class="filter">
+                <div class="field col-12 md:col-4">
+                    <span class="p-float-label p-input-icon-right">
+                        <i class="pi pi-search"></i>
+                        <input type="text" pInputText [(ngModel)]="valueIconRight" (keyup)="search($event)" > 
+                    </span>
+                </div>
+        
+                <p-dropdown [options]="Category"  placeholder="Category" [(ngModel)]="category"  [editable]="true" optionLabel="name" ></p-dropdown>
+
+            </div>
            <!-- <div class="buttons" style="display: flex; justify-content: center; flex-direction: row; flex-wrap: wrap; margin-top: 3rem;">
               <button routerLink="/allcampaigns" [class.active]="!category" type="button" class="btn" >All  </button>
               <div *ngFor="let c of Category " >
@@ -20,7 +31,7 @@
             </form>
           </div>  -->
            <div class="row1" >
-              <div *ngFor="let campaign of Campaign | paginate: { itemsPerPage: limit, currentPage: page ,totalItems: total};"  class="cards"(click)="onSelect(campaign)">
+              <div *ngFor="let campaign of filteredCollect | filter:searchkey:'name'| paginate: { itemsPerPage: limit, currentPage: page ,totalItems: total};"  class="cards"(click)="onSelect(campaign)">
                    <img  style="width:280px; height:200px; margin-top: 12px; " src="{{url+campaign.image}}" class="img-fluid rounded-circle w-60"  >
                   <h3 > {{campaign.name}} </h3>
                   <p>{{campaign.description| slice:0:200}}...</p>
