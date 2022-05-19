@@ -23,9 +23,8 @@ public getCampaignById(id: string): Observable<Campaign> {
   let API_URL = `${this.apiServerUrl}/campaign/${id}`;
   return this.http.get<Campaign>(API_URL);
 }
-// public getCommentByCampain(id:string): Observable<Campaign[]> {
-//   return this.http.get<Campaign[]>(`${this.apiServerUrl}/campaign/${id}/comments`)
-
-// }
+public deleteCampaignId(campaign_id:string):Observable<void>{
+  return this.http.delete<void>(`${this.apiServerUrl}/campaign/${campaign_id}`)
+}
 
 }

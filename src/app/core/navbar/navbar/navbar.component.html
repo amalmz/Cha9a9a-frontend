@@ -17,8 +17,11 @@
         <li >
             <a class="nav-link" href="#" style="color: rgb(255, 255, 255)!important;  padding-top: 1.3rem;">Contact</a>
         </li>
-          <li >
-            <a class="nav-link" href="#" style=" color: rgb(255, 255, 255)!important;  padding-top: 1.3rem;">Créer une collecte</a>
+          <li *ngIf="showCreatorBoard">
+            <a class="nav-link" routerLink="/creator" style=" color: rgb(255, 255, 255)!important;  padding-top: 1.3rem;">Créer une collecte</a>
+          </li>
+          <li *ngIf="showAdminBoard">
+            <a class="nav-link" routerLink="/admin" style=" color: rgb(255, 255, 255)!important;  padding-top: 1.3rem;">Admin Board</a>
           </li>
 
           <ul style="position: absolute;right: -27vw;" >

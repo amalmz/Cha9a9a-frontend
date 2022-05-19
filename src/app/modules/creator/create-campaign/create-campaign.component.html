@@ -1,0 +1,21 @@
+<div class="container" >
+    <h1>My Campaigns</h1>
+  <div class="row1" >
+<div *ngIf="user">
+    <div *ngFor="let campaign of user.campaign"  class="cards">
+         <img  style="width:200px; height:200px; margin-left: 12px; border-radius: 100%; " src="{{url+campaign.image}}" class="img-fluid rounded-circle w-60"  >
+      <div style="display: flex; flex-direction: column;"> 
+        <h3 > {{campaign.name}} </h3>
+        <div class="mini-card"  >
+            <h4>Objectif<br> <span>{{campaign.objective}} DT</span></h4>
+            <div class="vertical"></div> 
+            <h4>Collecté <br> <span>5000 DT</span></h4>
+            <div class="vertical"></div>
+            <h4>Participants <br> <span>5000 DT</span></h4>
+        </div>
+        <div class="status" [ngClass]="{'waiting':campaign.status === 'Waiting'}">{{campaign.status | uppercase }}</div>  
+      </div>
+    </div>
+  </div>
+</div>
+</div>

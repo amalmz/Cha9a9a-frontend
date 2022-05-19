@@ -1,0 +1,27 @@
+.container {
+    background: linear-gradient(135deg, white 10%, #e3e6e9);
+    display: grid;
+    height: 100vh;
+    grid-template-columns: 1fr 5fr ;
+    grid-template-rows:  0.7fr 5fr ;
+    grid-template-areas: "nav nav nav" "sidebar main main";
+    grid-gap: 0.5rem;
+    overflow-y: auto;
+  }
+  nav {
+    grid-area: nav;
+    background-color: #BFA2DB; 
+  }
+  
+  main {
+    grid-area: main;
+    padding-bottom: 2.4%;
+
+  }
+  
+  #sidebar {
+    grid-area: sidebar;
+    margin-left: 1rem;
+    margin-top: 3rem;
+
+  }

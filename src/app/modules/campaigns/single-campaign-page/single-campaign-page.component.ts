@@ -20,7 +20,7 @@ export class SingleCampaignPageComponent implements OnInit {
   @Input() campaign!:Campaign;
   currentUser = false;
   users:any;
-  idcreator:AnyForUntypedForms;
+  idcreator:any;
   Comments:any[]=[];
   Allcomments:any;
   CommentForm!:FormGroup;
@@ -53,7 +53,7 @@ export class SingleCampaignPageComponent implements OnInit {
       console.log("this is the campaign",this.campaign);
       this.users =this.campaign.created_by;
       console.log("this is the user",this.users)
-      this.Comments = this.campaign.comments.reverse();
+      this.Comments = this.campaign.comments!.reverse();
       console.log("this is the campaign comments",this.Comments);
     })
    }
@@ -61,7 +61,6 @@ export class SingleCampaignPageComponent implements OnInit {
    addComment(){
      const {text}= this.CommentForm.value;
      const user_id = this.token.getUser().id;
-     console.log(user_id)
      const campaign_id = this.route.snapshot.params['id']
      this.commentService.addComment(text,campaign_id,user_id).subscribe((res:any)=>{
      this.Comments.push();

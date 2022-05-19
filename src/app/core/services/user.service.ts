@@ -9,11 +9,25 @@ import { User } from '../models/user';
 export class UserService {
   private apiServerUrl = environment.apiBaseUrl;
   constructor(private http: HttpClient) { }
+  getAdminBoard(): Observable<any> {
+    return this.http.get(`${this.apiServerUrl}/users/api/test/admin`);
+  }
+
+  getCreatorBoard(): Observable<any> {
+    return this.http.get(`${this.apiServerUrl}/users/api/test/creator`);
+  }
+
+  getDonorBoard(): Observable<any> {
+    return this.http.get(`${this.apiServerUrl}/users/api/test/user`);
+  }
+
   public getUsers(): Observable<User[]> {
     return this.http.get<User[]>(`${this.apiServerUrl}/users/all`);
   }
   public getUserById(id:string):Observable<User[]>{
     return this.http.get<User[]>(`${this.apiServerUrl}/users/${id}`)
   } 
-
+  public deleteUserById(id:string):Observable<void>{
+    return this.http.delete<void>(`${this.apiServerUrl}/users/${id}`)
+  }
 }

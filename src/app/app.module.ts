@@ -9,7 +9,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AuthenticationModule } from './modules/authentication/authentication.module';
 import { CampaignsModule } from './modules/campaigns/campaigns.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -17,7 +17,8 @@ import { AuthInterceptorService } from './core/interceptors/auth-interceptor.ser
 import { TokenStorageService } from './core/services/token-storage.service'
 import{authInterceptorProviders} from './core/interceptors/auth-interceptor.service'
 import {CommentService}from './core/services/comment.service';
-
+import { AdminModule } from './modules/admin/admin.module';
+import { CreatorModule } from './modules/creator/creator.module';
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,6 +38,8 @@ import {CommentService}from './core/services/comment.service';
     RouterModule,
     NgxPaginationModule,
     BrowserAnimationsModule,
+    AdminModule,
+    CreatorModule
 
   
     

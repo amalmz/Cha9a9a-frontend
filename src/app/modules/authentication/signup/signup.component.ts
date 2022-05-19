@@ -3,7 +3,6 @@ import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from '../../../core/services/auth.service';
 import { MustMatch } from '../../../core/helpers/must-match.validator';
 import {Router} from "@angular/router";
-import { User } from 'src/app/core/models/user';
 import { TokenStorageService } from 'src/app/core/services/token-storage.service';
 
 @Component({

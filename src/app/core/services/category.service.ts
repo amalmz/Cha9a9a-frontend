@@ -13,7 +13,7 @@ export class CategoryService {
 
   constructor(private http: HttpClient) { }
   public getCategories(): Observable<Category[]> {
-    return this.http.get<Category[]>(`${this.apiServerUrl}/category/`);
+    return this.http.get<Category[]>(`${this.apiServerUrl}/category`);
   }
 
   public getCategorie(categoryId: number): Observable<Category> {
@@ -22,6 +22,9 @@ export class CategoryService {
 
   public deleteCategorie(categoryId: number): Observable<void> {
     return this.http.delete<void>(`${this.apiServerUrl}/category/${categoryId}`);
+  }
+  public createCategorie(name:string):Observable<Category>{
+    return this.http.post<Category>(`${this.apiServerUrl}/category`,name);
   }
 
 }

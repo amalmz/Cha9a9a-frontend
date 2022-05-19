@@ -14,14 +14,14 @@ import { Category } from 'src/app/core/models/category';
 export class ListOfCampaignsComponent implements OnInit {
   label :string=""
   Campaign:Campaign[]=[] ;
-  Category:any ;
+  Category:any | null ;
   selected!:any;
   valueIconRight: any;
   searchkey:string="";
   searchTerm:string="";
   filteredCollect:any[]=[];
   image:string="";
-  category:any;
+  category:any | null;
   url="http://localhost:5000/getfile/";
   p: number =1 ;
   term: string="" ; 
@@ -55,7 +55,7 @@ export class ListOfCampaignsComponent implements OnInit {
           this.category= params.get('category');
           console.log("category",this.category);
           this.filteredCollect = (this.category)? 
-          this.filteredCollect.filter(p => p.category && p.category.name=== this.category) : this.Campaign ; //p.category so even if the category is null (bich maya3mach error)
+          this.filteredCollect.filter(p => p.category && p.category.name === this.category) : this.Campaign ; //p.category so even if the category is null (bich maya3mach error)
           console.log("filteredCollect",this.filteredCollect);
         });
       //   this.route.queryParamMap.subscribe(params=>{
