@@ -42,9 +42,7 @@ export class CategoriesComponent implements OnInit {
     this.categoryDialog = true;
 }
 onSave(){
-    const {name} = this.categoryForm.value;
   
-    console.log('éaaa',name);
     // this.categoryService.createCategorie(name).subscribe(
     //     data=>{
     //       console.log("categorie is successfully created");
@@ -101,7 +99,8 @@ saveCategory() {
             this.messageService.add({severity:'success', summary: 'Successful', detail: 'category Updated', life: 3000});
         }
         else {
-            this.onSave();
+            const {name} = this.categoryForm.value;
+            console.log('éaaa',name);
             this.messageService.add({severity:'success', summary: 'Successful', detail: 'category Created', life: 3000});
         }
 

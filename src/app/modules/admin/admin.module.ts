@@ -27,7 +27,7 @@ import { MessageService } from 'primeng/api';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { CampaignListComponent } from './campaign-list/campaign-list.component';
 import { CategoriesComponent } from './categories/categories.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule ,ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -59,7 +59,8 @@ import { FormsModule } from '@angular/forms';
     InputNumberModule,
     ConfirmDialogModule,
     InputTextareaModule, 
-    FormsModule ],
+    FormsModule,
+    ReactiveFormsModule ],
     providers: 
     [ MessageService, ConfirmationService]
 

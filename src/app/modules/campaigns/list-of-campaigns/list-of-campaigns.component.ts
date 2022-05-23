@@ -5,7 +5,6 @@ import { Subscription } from 'rxjs';
 import { CategoryService } from 'src/app/core/services/category.service';
 import { CampaignService } from 'src/app/core/services/campaign.service';
 import { Campaign } from 'src/app/core/models/campaign';
-import { Category } from 'src/app/core/models/category';
 @Component({
   selector: 'app-list-of-campaigns',
   templateUrl: './list-of-campaigns.component.html',

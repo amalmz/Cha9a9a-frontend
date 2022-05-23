@@ -12,7 +12,9 @@ import {DialogModule} from 'primeng/dialog';
 import { InputTextModule } from "primeng/inputtext";
 import {DropdownModule} from 'primeng/dropdown';
 import { FilterPipe } from '../../shared/pipes/filter.pipe';
-
+import {DividerModule} from 'primeng/divider';
+import { ShareButtonsModule } from 'ngx-sharebuttons/buttons';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -32,8 +34,9 @@ import { FilterPipe } from '../../shared/pipes/filter.pipe';
     FormsModule,
     DialogModule,
     InputTextModule,
-    DropdownModule
-
+    DropdownModule,
+    DividerModule,
+    HttpClientModule
   ],
   exports:[
     ListOfCampaignsComponent,

@@ -2,10 +2,10 @@ export class Campaign {
     _id?: string;
     name?: string;
     objective?: Number;
+    category?:string;
     description?: string;
     image?: string;
-    category?:string;
     created_by?:string;
-    status!:string;
+    status?:string;
     comments?:any[]
   }

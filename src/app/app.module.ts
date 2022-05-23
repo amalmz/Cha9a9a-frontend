@@ -13,18 +13,21 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AuthInterceptorService } from './core/interceptors/auth-interceptor.service';
-import { TokenStorageService } from './core/services/token-storage.service'
 import{authInterceptorProviders} from './core/interceptors/auth-interceptor.service'
 import {CommentService}from './core/services/comment.service';
 import { AdminModule } from './modules/admin/admin.module';
 import { CreatorModule } from './modules/creator/creator.module';
+import {DropdownModule} from 'primeng/dropdown';
+import { ContactUsComponent } from './modules/contact-us/contact-us.component';
+import {ToastModule} from 'primeng/toast';
+
 @NgModule({
   declarations: [
     AppComponent,
     HomePageComponent,
     NavbarComponent,
     SharedButtonComponent,
+    ContactUsComponent,
   ],
   imports: [
     BrowserModule,
@@ -39,7 +42,9 @@ import { CreatorModule } from './modules/creator/creator.module';
     NgxPaginationModule,
     BrowserAnimationsModule,
     AdminModule,
-    CreatorModule
+    CreatorModule,
+    DropdownModule,
+    ToastModule
 
   
     
@@ -48,11 +53,13 @@ import { CreatorModule } from './modules/creator/creator.module';
   ],
   exports:[
     NgxPaginationModule,
+
+
   ],
 
   providers: [
     authInterceptorProviders,
-    CommentService
+    CommentService,
   ],
   
 

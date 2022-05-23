@@ -21,11 +21,12 @@ export class SideBarComponent implements OnInit {
       {
           label: 'My Campaigns',
           icon: 'pi pi-heart-fill',
-          routerLink:['create']
+          routerLink:['MyCampaigns']
       },
       {
-          label: 'Requests',
+          label: 'Create new Campaign ',
           icon: 'pi pi-box',
+          routerLink:['create']
       },
       {
         label: 'categories',

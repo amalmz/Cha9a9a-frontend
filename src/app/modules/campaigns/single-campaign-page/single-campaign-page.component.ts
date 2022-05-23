@@ -5,8 +5,9 @@ import { Campaign } from 'src/app/core/models/campaign';
 import { CommentService } from 'src/app/core/services/comment.service';
 import { TokenStorageService } from 'src/app/core/services/token-storage.service';
 import {ConfirmationService, ConfirmEventType, MessageService} from 'primeng/api';
-import {AnyForUntypedForms, FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import { FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import { PrimeNGConfig } from 'primeng/api';
+import { StripeService } from 'src/app/core/services/stripe.service'; 
 
 @Component({
   selector: 'app-single-campaign-page',
@@ -30,20 +31,28 @@ export class SingleCampaignPageComponent implements OnInit {
   Sizes: any = [3, 6, 9, 12];
   displayBasic!: boolean;
   toDisplay:any ={};
+  display: boolean = false;
+  public href: string = "";
+  paymentHandler: any = null;
+  success: boolean = false
+  failure:boolean = false
 
   constructor(private route:ActivatedRoute,private campaignService:CampaignService,private primengConfig: PrimeNGConfig,
    private commentService:CommentService, private token : TokenStorageService,private confirmationService: ConfirmationService,
-   private messageService: MessageService, private formBuilder : FormBuilder) { 
+   private messageService: MessageService, private formBuilder : FormBuilder,private router: Router , private checkout:StripeService) { 
      
    }
 
   ngOnInit(): void {
+    this.href ="http://localhost:4200"+ this.router.url;
+    console.log(this.href)
     let id =this.route.snapshot.params['id']//get the id as a string so we need to add a + to convert it to int
     this.getCampaign(id);
     this.idcreator = this.token.getUser().id;
     this.CommentForm = this.formBuilder.group({
       text: new FormControl('',[Validators.required, Validators.minLength(4),Validators.maxLength(100)]),
      })
+     this.invokeStripe();
    }
 
    getCampaign(id:string){
@@ -67,37 +76,17 @@ export class SingleCampaignPageComponent implements OnInit {
      this.ngOnInit();
 
      })
-
-   
-    //  
-    //  console.warn(this.comments);
    }
   removeComment(id:number){
 
   }
-  // public getUser(_id:string):void{
-  //  this.userService.getUserById(_id).subscribe((res:any)=>{
-  //    this.users= res["data"];
-  //    console.log("this user is",this.users)
-
-  //  })
-  // }
-  // public getComments(_id:string){
-  //   this.campaignService.getCommentByCampain(_id).subscribe((res:any)=>{
-  //   this.Comments=res["data"];
-  //     console.log("list of comments",this.Comments)
-  //   })
-
-  // }
-  // public getComments(_id:string){
-  //  this.commentService.getComments(_id).subscribe((res:any)=>{
-  //    this.comments = res["data"];
-  //    console.log("comments:",this.comments)
-  //  })
-  // }
   showBasicDialog() {
     this.displayBasic = true;
 }
+
+ showDialog() {
+  this.display = true;
+ }
 
   public onDeleteComment(compaignId: string,commentId:string): void {
     this.commentService.deleteComment(compaignId,commentId).subscribe(
@@ -155,6 +144,71 @@ public onEdit(commentId:string){
    
 toggleData() {
   this.toDisplay = !this.toDisplay;
+}
+clickCopy(input:any){
+  // input.select();
+  // document.execCommand('copy');
+  // input.setSelectRange(0,0);
+  let copyText = document.querySelector(".copy-text");
+  input.select();
+  document.execCommand("copy");
+  copyText?.classList.add("active");
+  window.getSelection()?.removeAllRanges();
+
+}
+
+
+
+makePayment(amount: number) {
+  const paymentHandler = (<any>window).StripeCheckout.configure({
+    key: 'pk_test_51KzNmnKxDkYllxSnY8T1eQ3VVZCQp8V7PhMi6XgVPVXXTSUWkMjh7wntkBXISJ6sJ3MrhlSpcnCAjj8F04MAqVgt00pJvQXjT3',
+    locale: 'auto',
+    token: function (stripeToken: any) {
+      console.log(stripeToken);
+      paymentstripe(stripeToken);
+    },
+  });
+
+  const paymentstripe = (stripeToken: any) => {
+    this.checkout.makePayment(stripeToken).subscribe((data: any) => {
+      console.log(data);
+      if (data.data === "success") {
+        this.success = true;
+        this.messageService.add({key: 'myKey1', severity:'success', summary: 'The donation transferred successfully', detail: 'Detail Text'});
+      }
+      else {
+        this.failure = true
+        this.messageService.add({severity:'error', summary:'failed', detail:'failed to donate'});
+
+      }
+    });
+  };
+
+  paymentHandler.open({
+    name: 'Donate here',
+    description: 'This is a sample pdf file',
+    amount: amount * 100,
+  });
+}
+
+invokeStripe() {
+  if (!window.document.getElementById('stripe-script')) {
+    const script = window.document.createElement('script');
+    script.id = 'stripe-script';
+    script.type = 'text/javascript';
+    script.src = 'https://checkout.stripe.com/checkout.js'; // library of stripe 
+    script.onload = () => {
+      this.paymentHandler = (<any>window).StripeCheckout.configure({
+        key: 'pk_test_51KzNmnKxDkYllxSnY8T1eQ3VVZCQp8V7PhMi6XgVPVXXTSUWkMjh7wntkBXISJ6sJ3MrhlSpcnCAjj8F04MAqVgt00pJvQXjT3',
+        locale: 'auto',
+        token: function (stripeToken: any) {
+          console.log(stripeToken);
+        },
+      });
+    };
+
+    window.document.body.appendChild(script);
+  }
 }
 
 }

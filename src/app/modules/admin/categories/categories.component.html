@@ -2,9 +2,10 @@
 <p-toast></p-toast>
 
 <div class="card">
-  <p-toolbar styleClass="p-mb-4">
-    <ng-template pTemplate="left">
-      <button
+  <div style="display:flex;align-items: center;
+  justify-content: space-between;">
+  <h1>List of categories</h1>
+      <button style="margin-right: 1rem;"
         pButton
         pRipple
         label="New"
@@ -12,9 +13,7 @@
         class="p-button-success p-mr-2"
         (click)="openNew()"
       ></button>
-    </ng-template>
-  </p-toolbar>
-
+  </div>
   <p-table
     #dt
     [value]="categories"
@@ -29,7 +28,6 @@
   >
     <ng-template pTemplate="caption">
       <div class="p-d-flex p-ai-center p-jc-between">
-        <h5 class="p-m-0">Manage Products</h5>
         <span class="p-input-icon-left">
           <i class="pi pi-search"></i>
           <input pInputText type="text" (input)="dt.filterGlobal(getEventValue($event), 'contains')" placeholder="Search..." />
@@ -80,19 +78,22 @@
   styleClass="p-fluid"
 >
   <ng-template pTemplate="content">
-    <div class="p-field">
+    <div class="p-field" >
+      <form [formGroup]="categoryForm">
       <label for="name">Name</label>
       <input
         type="text"
         pInputText
         id="name"
-        [(ngModel)]="category.name"
+        formControlName="name"
         required
         autofocus
       />
       <small class="p-invalid" *ngIf="submitted && !category.name"
         >Name is required.</small>
+     </form>
     </div>
+
   </ng-template>
 
   <ng-template pTemplate="footer">

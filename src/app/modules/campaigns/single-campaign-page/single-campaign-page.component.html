@@ -14,8 +14,35 @@
        <h2>Objectif: <span>{{campaign.objective}}DT</span></h2>
        <h2>collecté: <span>5 000 DT</span></h2>
          <div class="buttons">
-            <button class="btn">Partager</button>
-            <button class="btn">Soutenir</button>
+            <button class="btn" (click)="showDialog()">Partager</button>      
+            <p-dialog header="Help by sharing" [(visible)]="display" [style]="{width: '50vw',height: '27em'}">
+               <p-divider></p-divider>
+               <div style="display: flex; justify-content: space-evenly;flex-wrap: wrap;">
+                  <button pButton pRipple class="p-button-outlined p-button-secondary" label="Facebook" icon="pi pi-facebook"></button>
+                 <button pButton pRipple type="button" class="p-button-outlined p-button-secondary" label="Instagram" icon="pi pi-instagram"></button>
+                 <button pButton pRipple type="button" class="p-button-outlined p-button-secondary" label="Twitter" icon="pi pi-twitter"></button>
+                <button pButton pRipple class="p-button-outlined p-button-secondary" type="button" label="Linkedin" icon="pi pi-linkedin"></button>
+              </div>
+              <p-divider></p-divider>
+              <div class="container">
+                <div class="label">
+                  Copy Link
+                </div>
+                <div class="copy-text">
+                  <input #input1 type="text" class="text" value="{{href}}" readonly>
+                  <button click="clickCopy(input1)">
+                    <i class="pi pi-copy"></i>
+                  </button>
+                </div>
+              </div>
+            </p-dialog>
+            <p-toast key="myKey1"></p-toast>
+            <p-toast key="myKey2"></p-toast>
+            <button class="btn" (click)="makePayment(15)" >Soutenir</button>
+            <div *ngIf="success">
+             </div>
+          <div *ngIf="failure">
+          </div>
          </div>
      </div>
    </div>

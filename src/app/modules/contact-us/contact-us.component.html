@@ -1,0 +1,51 @@
+<div class="quarter-ellipse quarter-ellipse3"></div>
+<div class="contactUs">
+   <div class="container">
+    <div class="content">
+      <div class="left-side">
+        <div class="address details">
+          <i class="pi pi-map-marker"></i>
+          <div class="topic">Address</div>
+          <div class="text-one">Surkhet, NP12</div>
+          <div class="text-two">Birendranagar 06</div>
+        </div>
+        <div class="phone details">
+          <i class="pi pi-phone"></i>
+          <div class="topic">Phone</div>
+          <div class="text-one">+0098 9893 5647</div>
+          <div class="text-two">+0096 3434 5678</div>
+        </div>
+        <div class="email details">
+          <i class="pi pi-envelope"></i>
+          <div class="topic">Email</div>
+          <div class="text-one">DueToData@gmail.com</div>
+        </div>
+      </div>
+      <div class="right-side">
+        <div class="topic-text">Send us a message</div>
+      <form [formGroup]="formContact" (ngSubmit)="formContact.valid && OnSubmit()">
+        <div class="input-box">
+          <input type="text" formControlName="nom" placeholder="Enter your name">
+        </div>
+        <div class="input-box">
+          <input type="text" formControlName="email" placeholder="Enter your email">
+        </div>
+        <div class="input-box">
+            <input type="text" formControlName="subject" placeholder="Subject">
+          </div>
+          <div class="input-box">
+            <textarea type="text" formControlName="message" placeholder="Enter your email"></textarea>
+          </div>
+        
+        <div class="input-box message-box">
+          
+        </div>
+        <div class="button">
+          <button class="btn" [disabled]="!formContact.valid" type="submit" >Send Now</button>
+        </div>
+      </form>
+      <p-toast></p-toast>
+    </div>
+    </div>
+  </div>
+</div>
