@@ -5,7 +5,7 @@ import { Observable } from 'rxjs'
 @Injectable({
   providedIn: 'root'
 })
-export class StripeService {
+export class DataStripeService {
 
   constructor(private http: HttpClient) { }
    

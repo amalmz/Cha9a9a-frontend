@@ -7,7 +7,7 @@
 .filter{
   display: flex;
   justify-content: center;
-  margin:4rem;
+  margin:2rem;
 }
 ::ng-deep .p-input-icon-right {
   margin-right: 2rem;
@@ -17,6 +17,9 @@
 }
 ::ng-deep .p-dropdown {
   width: 10rem;
+}
+::ng-deep .ngx-pagination .current{
+  background: #ad6080!important;
 }
 
 

@@ -18,6 +18,7 @@
                 <th pSortableColumn="objective">Goal <p-sortIcon field="objective"></p-sortIcon></th>
                 <th pSortableColumn="category">Category <p-sortIcon field="category"></p-sortIcon></th>
                 <th pSortableColumn="created_by">Created By <p-sortIcon field="created_by"></p-sortIcon></th>
+                <th pSortableColumn="status">Status <p-sortIcon field="status"></p-sortIcon></th>
                 <th></th>
             </tr>
         </ng-template>
@@ -27,7 +28,7 @@
                 <td>{{campaign.objective}}</td>
                 <td>{{campaign.category?.name}}</td>
                 <td>{{campaign.created_by?.name}} {{campaign.created_by?.lastname}} </td>
-
+                <td  [ngClass]="{'waiting':campaign.status === 'Waiting','accept':campaign.status === 'Accept','reject':campaign.status === 'Reject','publiched':campaign.status === 'Published'}">{{campaign?.status}}</td>
                 <td>
                     <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteCampaign(campaign,campaign._id)"></button>
                 </td>

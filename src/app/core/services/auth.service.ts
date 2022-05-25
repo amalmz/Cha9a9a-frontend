@@ -15,6 +15,7 @@ const httpOptions = {
 })
 
 export class AuthService {
+  roleAs!: string;
 
   constructor(private http:HttpClient, private tokenStorage:TokenStorageService) {}
   login(email:string,password:string): Observable<any> {
@@ -34,5 +35,10 @@ export class AuthService {
   }
   verifyOtp(userId:String,otp:String){
     return this.http.post(AUTH_API+'verifyOTP',{userId,otp},httpOptions)
+  }
+  getRole() {
+    const user = this.tokenStorage.getUser();
+    this.roleAs = user.roles;
+    return this.roleAs;
   }
 }

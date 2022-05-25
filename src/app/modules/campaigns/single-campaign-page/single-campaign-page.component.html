@@ -36,13 +36,22 @@
                 </div>
               </div>
             </p-dialog>
+            <!-- <button class="btn" >Soutenir</button>
+             <form novalidate (ngSubmit)="Donate()" [formGroup]="stripeForm">
+              <input type="text" formControlName="name" placeholder="Full name">
+              <input type="number" formControlName="amount" placeholder="Amount">
+              <div id="card-element" class="field"></div>
+              <button type="submit">
+                BUY
+              </button>
+            </form>  -->
             <p-toast key="myKey1"></p-toast>
             <p-toast key="myKey2"></p-toast>
             <button class="btn" (click)="makePayment(15)" >Soutenir</button>
             <div *ngIf="success">
              </div>
-          <div *ngIf="failure">
-          </div>
+          <div *ngIf="failure"></div>
+          
          </div>
      </div>
    </div>

@@ -1,0 +1,53 @@
+<p-tabView>
+    <p-tabPanel header="Campaign request">
+        <p-toast></p-toast>
+        <div class="card" >
+            <p-table #dt [value]="Campaigns" [rows]="5" [paginator]="true" [globalFilterFields]="['name','objective','category.name','created_by.name']" responsiveLayout="scroll"
+                [(selection)]="selectedCampaign" [rowHover]="true" dataKey="id"
+                currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
+                <ng-template pTemplate="caption">
+                    <div class="flex">
+                        <span class="p-input-icon-left ml-auto">
+                            <i class="pi pi-search"></i>
+                            <input pInputText type="text" (input)="dt.filterGlobal(getEventValue($event), 'contains')" placeholder="Search keyword" />
+                        </span>
+                    </div>
+                    </ng-template>
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th pSortableColumn="name">Name <p-sortIcon field="name"></p-sortIcon></th>
+                        <th pSortableColumn="objective">Goal <p-sortIcon field="objective"></p-sortIcon></th>
+                        <th pSortableColumn="category">Category <p-sortIcon field="category"></p-sortIcon></th>
+                        <th pSortableColumn="created_by">Created By <p-sortIcon field="created_by"></p-sortIcon></th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-campaign>
+                    <tr>
+                        <td>{{campaign.name}}</td>
+                        <td>{{campaign.objective}}</td>
+                        <td>{{campaign.category?.name}}</td>
+                        <td>{{campaign.created_by?.name}} {{campaign.created_by?.lastname}} </td>
+        
+                        <td>
+                            <button pButton type="button" label="Accept" class="p-button-success" (click)="AcceptCampaign(campaign,campaign._id)"></button>
+                        </td>
+                        <td>
+                            <button pButton type="button" label="Reject" class="p-button-danger" (click)="RejectCampaign(campaign,campaign._id)"></button>
+                        </td>
+                        </tr>
+                </ng-template>
+                <ng-template pTemplate="summary">
+                    <div class="flex align-items-center justify-content-between">
+                        In total there are {{Campaigns ? Campaigns.length : 0 }} Campaigns.
+                    </div>
+                </ng-template>
+            </p-table>
+        </div>
+        <p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
+    </p-tabPanel>
+    <p-tabPanel header="User request">
+        Content 2
+    </p-tabPanel>
+</p-tabView>

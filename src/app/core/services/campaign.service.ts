@@ -29,11 +29,16 @@ public createCampaign(name:string,objective:string,category:string,description:s
   return this.http.post<Campaign>(`${this.apiServerUrl}/campaign/create`,formData)
 }
 public getCampaignById(id: string): Observable<Campaign> {
-  let API_URL = `${this.apiServerUrl}/campaign/${id}`;
-  return this.http.get<Campaign>(API_URL);
+  return this.http.get<Campaign>(`${this.apiServerUrl}/campaign/${id}`);
 }
 public deleteCampaignId(campaign_id:string):Observable<void>{
   return this.http.delete<void>(`${this.apiServerUrl}/campaign/${campaign_id}`)
+}
+public getCampaignByStatus(status: string): Observable<Campaign> {
+  return this.http.get<Campaign>(`${this.apiServerUrl}/campaign/status/${status}`);
+}
+public updateCampaignEtat(campaign_id:string,status: string): Observable<Campaign> {
+  return this.http.put<Campaign>(`${this.apiServerUrl}/campaign/update/${campaign_id}`,status);
 }
 
 }

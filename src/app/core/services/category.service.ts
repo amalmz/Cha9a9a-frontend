@@ -16,11 +16,11 @@ export class CategoryService {
     return this.http.get<Category[]>(`${this.apiServerUrl}/category`);
   }
 
-  public getCategorie(categoryId: number): Observable<Category> {
+  public getCategorie(categoryId: string): Observable<Category> {
     return this.http.get<Category>(`${this.apiServerUrl}/category/${categoryId}`);
   }
 
-  public deleteCategorie(categoryId: number): Observable<void> {
+  public deleteCategorie(categoryId: string): Observable<void> {
     return this.http.delete<void>(`${this.apiServerUrl}/category/${categoryId}`);
   }
   public createCategorie(name:string):Observable<Category>{

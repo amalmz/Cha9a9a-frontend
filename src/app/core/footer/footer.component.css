@@ -1,0 +1,137 @@
+footer{
+    background-image: linear-gradient(to top, #e8c7fe 4%,#b89bd4 100%);
+    margin-top: 5rem;
+}
+.content{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.row{
+    display: flex; 
+    flex-direction: column;
+    padding-left: 10rem;
+}
+.row1{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: row;
+    padding: 3.5rem 0 1rem 0;
+    flex-wrap: wrap;
+
+}
+.row1 li{
+    display: flex;
+}
+.row1 a {
+  display: block;
+  text-align: left;
+  text-decoration: none;
+  padding: 0.5rem;
+  color: white;
+  font-family: 'dejavu';
+}
+.row1 ul li:nth-child(1){
+   padding-bottom: 1rem;
+   opacity: 1;
+   font-size: 3vh;
+   font-weight:800 ;
+
+  }
+
+.row1 ul li:nth-child(n+2):nth-child(-n+7) {
+    font-size: 2.2vh;
+}
+hr {
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #fff;
+    margin: auto;
+    width: 100%;
+}
+.row2{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    padding-bottom: 3rem;
+}
+.row2 ul{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: row;
+    margin: 0;
+}
+.row2 li {
+ display: flex;
+}
+.row2 a {
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    padding: 0.5rem;
+    color: white ;
+    font-family: 'dejavu';
+
+}
+.row2 ul a{
+    font-size: 1vh;
+}
+
+input {
+    border-radius: 3rem;
+    padding: 1rem 4rem;
+    border: none;
+}
+.input1{
+    position: relative;
+    margin: 1rem;
+}
+
+.input1 button{
+    padding: 0.5rem 1.5rem 0rem 1.5rem;
+    border-radius: 2rem;
+    border: none;
+    position: absolute;
+    right: -2rem;
+    background-color: lightgray ;
+}
+
+@media only screen and (max-width:1200px){
+    .row{
+        padding-left: 0;
+    }
+    hr{
+        width: 90%;
+    }
+    .code{
+        margin: 4vh;
+    }
+}
+@media only screen and (max-width:580px){
+    .content{
+        align-items: center;
+        flex-wrap: wrap;
+        flex-direction: column-reverse;
+    }   
+    .row{
+    padding-left: 0;
+    justify-content: center;
+    align-items: center;
+}
+  
+     .row1{
+        justify-content: flex-start;
+        padding: 0;
+    }
+
+    input {
+        padding: 1rem 2rem;
+    }
+
+}
+
+  

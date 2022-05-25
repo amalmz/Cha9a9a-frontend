@@ -28,6 +28,8 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
 import { CampaignListComponent } from './campaign-list/campaign-list.component';
 import { CategoriesComponent } from './categories/categories.component';
 import { FormsModule ,ReactiveFormsModule} from '@angular/forms';
+import { RequestsComponent } from './requests/requests.component';
+import {TabViewModule} from 'primeng/tabview';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,8 @@ import { FormsModule ,ReactiveFormsModule} from '@angular/forms';
     SideBarComponent,
     UsersBoardComponent,
     CampaignListComponent,
-    CategoriesComponent
+    CategoriesComponent,
+    RequestsComponent
   ],
   imports: [
     CommonModule,
@@ -60,7 +63,10 @@ import { FormsModule ,ReactiveFormsModule} from '@angular/forms';
     ConfirmDialogModule,
     InputTextareaModule, 
     FormsModule,
-    ReactiveFormsModule ],
+    ReactiveFormsModule,
+    TabViewModule 
+  
+  ],
     providers: 
     [ MessageService, ConfirmationService]
 

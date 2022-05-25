@@ -14,7 +14,8 @@ import { CreateCampaignComponent } from './modules/creator/create-campaign/creat
 import { CreatorBoardComponent } from './modules/creator/creator-board/creator-board.component';
 import { MyCampaignsComponent } from './modules/creator/my-campaigns/my-campaigns.component';
 import { HomePageComponent } from './modules/home/home-page/home-page.component';
-
+import { AuthGuard } from './core/services/auth.guard';
+import { RequestsComponent } from './modules/admin/requests/requests.component';
 const routes: Routes = [
   {path:'home',component:HomePageComponent},
   {path:'signin',component:SigninComponent},
@@ -23,7 +24,11 @@ const routes: Routes = [
   {path:'allcampaigns', component:ListOfCampaignsComponent},
   {path:'campaign/:id',component:SingleCampaignPageComponent},
   {path:'contact',component:ContactUsComponent},
-  {path:'admin',component:AdminBoardComponent,
+  {path:'admin',component:AdminBoardComponent,   
+   canActivate: [AuthGuard],
+    data: {
+      roles: 'ROLE_ADMIN'
+    },
    children:[{
      path:'users',
      component:UsersBoardComponent
@@ -35,9 +40,17 @@ const routes: Routes = [
   {
     path:'category',
     component:CategoriesComponent
+  },
+  {
+    path:'requests',
+    component:RequestsComponent
   }
 ]},
 {path:'creator',component:CreatorBoardComponent,
+canActivate: [AuthGuard],
+data: {
+  roles: 'ROLE_CREATOR'
+},
   children:[{
     path:'MyCampaigns',
     component:MyCampaignsComponent

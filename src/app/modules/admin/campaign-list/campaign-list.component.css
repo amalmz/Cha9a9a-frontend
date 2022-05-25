@@ -10,3 +10,22 @@ h1{
     border: 1px solid #d9c6c6;
     margin-right: 1rem;
 }
+
+  .waiting{
+    color: #d9942e;
+    background-color: #fff100;
+
+  }
+  .accept{
+    color: #48aede;;
+    background-color: #0f3bb3;
+  }
+  .reject{
+    color: #56180c;
+    background-color: #ff0000;
+  }
+  .publiched{
+    color: #3e5a3a;
+    background-color: #19c919;
+    margin-left: 10.7rem;
+  }

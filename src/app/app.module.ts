@@ -20,6 +20,7 @@ import { CreatorModule } from './modules/creator/creator.module';
 import {DropdownModule} from 'primeng/dropdown';
 import { ContactUsComponent } from './modules/contact-us/contact-us.component';
 import {ToastModule} from 'primeng/toast';
+import { FooterComponent } from './core/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import {ToastModule} from 'primeng/toast';
     NavbarComponent,
     SharedButtonComponent,
     ContactUsComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,

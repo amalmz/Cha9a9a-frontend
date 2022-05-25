@@ -54,26 +54,22 @@ onSave(){
     // )
 
 }
-
-deleteselectedCategories() {
-    this.confirmationService.confirm({
-        message: 'Are you sure you want to delete the selected categories?',
-        header: 'Confirm',
-        icon: 'pi pi-exclamation-triangle',
-        accept: () => {
-            this.categories = this.categories.filter(val => !this.selectedCategories.includes(val));
-            // this.selectedCategories = null ;
-            this.messageService.add({severity:'success', summary: 'Successful', detail: 'categories Deleted', life: 3000});
-        }
-    });
-}
+onDelete(categoryId:string){
+    this.categoryService.deleteCategorie(categoryId).subscribe(
+        (response: any) => {
+            console.log(response);
+          },
+          (error: any) => {
+            alert(error.message);
+          }
+    )}
 
 editCatogory(category: Category) {
     this.category = {...category};
     this.categoryDialog = true;
 }
 
-deleteCategory(category: Category) {
+deleteCategory(category: Category,id:string) {
     this.confirmationService.confirm({
         message: 'Are you sure you want to delete ' + category.name + '?',
         header: 'Confirm',
@@ -81,6 +77,8 @@ deleteCategory(category: Category) {
         accept: () => {
             this.categories = this.categories.filter(val => val._id !== category._id);
             this.category={};
+            category._id = id 
+            this.onDelete(id);
             this.messageService.add({severity:'success', summary: 'Successful', detail: 'categories Deleted', life: 3000});
         }
     });

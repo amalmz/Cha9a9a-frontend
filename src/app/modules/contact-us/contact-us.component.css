@@ -1,9 +1,7 @@
 .contactUs{
-    position: absolute;
-    top: 25%;
-    bottom: 0;
-    right: 0;
-    left:19%;
+  margin-top: -5rem;
+  display: flex;
+  justify-content: center;
 }
 .container{
     width: 80%;

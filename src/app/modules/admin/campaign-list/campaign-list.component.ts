@@ -36,7 +36,7 @@ export class CampaignListComponent implements OnInit {
     )}
 
     openNew() {
-      this.campaign;
+      this.campaign={};
       this.submitted = false;
       this.campaignDialog = true;
   }
@@ -57,7 +57,7 @@ deleteCampaign(campaign: Campaign,id:string) {
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
           this.Campaigns = this.Campaigns.filter(val => val._id !== campaign._id);
-          id!=campaign._id;
+          campaign._id = id;
           this.onDeleteCampaign(id);
           this.messageService.add({severity:'success', summary: 'Successful', detail: 'Product Deleted', life: 3000});
       }

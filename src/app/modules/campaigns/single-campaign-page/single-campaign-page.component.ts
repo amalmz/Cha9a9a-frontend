@@ -7,7 +7,7 @@ import { TokenStorageService } from 'src/app/core/services/token-storage.service
 import {ConfirmationService, ConfirmEventType, MessageService} from 'primeng/api';
 import { FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import { PrimeNGConfig } from 'primeng/api';
-import { StripeService } from 'src/app/core/services/stripe.service'; 
+import { DataStripeService } from 'src/app/core/services/data-stripe.service';
 
 @Component({
   selector: 'app-single-campaign-page',
@@ -39,7 +39,7 @@ export class SingleCampaignPageComponent implements OnInit {
 
   constructor(private route:ActivatedRoute,private campaignService:CampaignService,private primengConfig: PrimeNGConfig,
    private commentService:CommentService, private token : TokenStorageService,private confirmationService: ConfirmationService,
-   private messageService: MessageService, private formBuilder : FormBuilder,private router: Router , private checkout:StripeService) { 
+   private messageService: MessageService, private formBuilder : FormBuilder,private router: Router , private checkout:DataStripeService) { 
      
    }
 
@@ -156,7 +156,6 @@ clickCopy(input:any){
   window.getSelection()?.removeAllRanges();
 
 }
-
 
 
 makePayment(amount: number) {

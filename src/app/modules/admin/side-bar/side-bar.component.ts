@@ -26,6 +26,7 @@ export class SideBarComponent implements OnInit {
       {
           label: 'Requests',
           icon: 'pi pi-box',
+          routerLink:['requests']
       },
       {
         label: 'categories',
