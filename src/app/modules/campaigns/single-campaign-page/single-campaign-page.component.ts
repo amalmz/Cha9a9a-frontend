@@ -45,7 +45,6 @@ export class SingleCampaignPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.href ="http://localhost:4200"+ this.router.url;
-    console.log(this.href)
     let id =this.route.snapshot.params['id']//get the id as a string so we need to add a + to convert it to int
     this.getCampaign(id);
     this.idcreator = this.token.getUser().id;
@@ -54,7 +53,11 @@ export class SingleCampaignPageComponent implements OnInit {
      })
      this.invokeStripe();
    }
+   getURL(){
+    this.href ="http://localhost:4200"+ this.router.url;
+    console.log(this.href)
 
+   }
    getCampaign(id:string){
     this.campaignService.getCampaignById(id).subscribe((res:any) =>{
       this.campaign=res["data"];

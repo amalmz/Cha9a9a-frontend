@@ -13,7 +13,6 @@ import { InputTextModule } from "primeng/inputtext";
 import {DropdownModule} from 'primeng/dropdown';
 import { FilterPipe } from '../../shared/pipes/filter.pipe';
 import {DividerModule} from 'primeng/divider';
-import { ShareButtonsModule } from 'ngx-sharebuttons/buttons';
 import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
@@ -36,7 +35,8 @@ import { HttpClientModule } from '@angular/common/http';
     InputTextModule,
     DropdownModule,
     DividerModule,
-    HttpClientModule
+    HttpClientModule,
+
   ],
   exports:[
     ListOfCampaignsComponent,

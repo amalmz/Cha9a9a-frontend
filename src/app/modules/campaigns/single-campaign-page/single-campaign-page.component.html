@@ -18,8 +18,22 @@
             <p-dialog header="Help by sharing" [(visible)]="display" [style]="{width: '50vw',height: '27em'}">
                <p-divider></p-divider>
                <div style="display: flex; justify-content: space-evenly;flex-wrap: wrap;">
-                  <button pButton pRipple class="p-button-outlined p-button-secondary" label="Facebook" icon="pi pi-facebook"></button>
-                 <button pButton pRipple type="button" class="p-button-outlined p-button-secondary" label="Instagram" icon="pi pi-instagram"></button>
+                  <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Ftexblog.org%2F2012%2F08%2F29%2Fchanging-the-font-size-in-latex%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">
+                  <button data-href="https://texblog.org/2012/08/29/changing-the-font-size-in-latex/" pButton pRipple class="p-button-outlined p-button-secondary" label="Facebook" icon="pi pi-facebook">        
+                  </button>
+                  </a>
+                  <a class="twitter-share-button"
+                  rel="canonical"
+                  href="https://twitter.com/intent/tweet"
+                  data-size="large"
+                  data-text="custom share text"
+                  data-url="https://dev.twitter.com/web/tweet-button"
+                  data-hashtags="example,demo"
+                  data-via="twitterdev"
+                  data-related="twitterapi,twitter"> 
+                    <button pButton pRipple type="button" class="p-button-outlined p-button-secondary" label="Twitter" icon="pi pi-twitter">
+                  </button>
+                 </a>     
                  <button pButton pRipple type="button" class="p-button-outlined p-button-secondary" label="Twitter" icon="pi pi-twitter"></button>
                 <button pButton pRipple class="p-button-outlined p-button-secondary" type="button" label="Linkedin" icon="pi pi-linkedin"></button>
               </div>

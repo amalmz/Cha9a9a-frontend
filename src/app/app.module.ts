@@ -46,7 +46,8 @@ import { FooterComponent } from './core/footer/footer.component';
     AdminModule,
     CreatorModule,
     DropdownModule,
-    ToastModule
+    ToastModule,
+
 
   
     
@@ -55,8 +56,7 @@ import { FooterComponent } from './core/footer/footer.component';
   ],
   exports:[
     NgxPaginationModule,
-
-
+    
   ],
 
   providers: [
