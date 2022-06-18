@@ -18,11 +18,11 @@
             <p-dialog header="Help by sharing" [(visible)]="display" [style]="{width: '50vw',height: '27em'}">
                <p-divider></p-divider>
                <div style="display: flex; justify-content: space-evenly;flex-wrap: wrap;">
-                  <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Ftexblog.org%2F2012%2F08%2F29%2Fchanging-the-font-size-in-latex%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">
+                  <a style="text-decoration: none;" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Ftexblog.org%2F2012%2F08%2F29%2Fchanging-the-font-size-in-latex%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">
                   <button data-href="https://texblog.org/2012/08/29/changing-the-font-size-in-latex/" pButton pRipple class="p-button-outlined p-button-secondary" label="Facebook" icon="pi pi-facebook">        
                   </button>
                   </a>
-                  <a class="twitter-share-button"
+                  <a style="text-decoration: none;" class="twitter-share-button"
                   rel="canonical"
                   href="https://twitter.com/intent/tweet"
                   data-size="large"
@@ -34,7 +34,7 @@
                     <button pButton pRipple type="button" class="p-button-outlined p-button-secondary" label="Twitter" icon="pi pi-twitter">
                   </button>
                  </a>     
-                 <button pButton pRipple type="button" class="p-button-outlined p-button-secondary" label="Twitter" icon="pi pi-twitter"></button>
+                 <button pButton pRipple type="button" class="p-button-outlined p-button-secondary" label="Instagram" icon="pi pi-instagram"></button>
                 <button pButton pRipple class="p-button-outlined p-button-secondary" type="button" label="Linkedin" icon="pi pi-linkedin"></button>
               </div>
               <p-divider></p-divider>
@@ -59,12 +59,26 @@
                 BUY
               </button>
             </form>  -->
-            <p-toast key="myKey1"></p-toast>
+            <!-- <p-toast key="myKey1"></p-toast>
             <p-toast key="myKey2"></p-toast>
             <button class="btn" (click)="makePayment(15)" >Soutenir</button>
             <div *ngIf="success">
              </div>
-          <div *ngIf="failure"></div>
+          <div *ngIf="failure"></div> -->
+          <button class="btn" (click)="showModalDialog()" >Soutenir</button>
+          <p-dialog header="Donate to: {{campaign.name}}" [(visible)]="displayModal" [modal]="true" [style]="{width: '50vw'}"
+           [draggable]="false" [resizable]="false">
+            <form  [formGroup]="donationForm">
+              <!-- <input formControlName="donateamount" type="number" placeholder="Amount" id="donateamount" #donateamount required> -->
+              <div class="p-inputgroup" [style]="{'width':'20rem'}">
+                <p-inputNumber mode="decimal" formControlName="donateamount" placeholder="Amount"  [minFractionDigits]="2" id="donateamount" #donateamount></p-inputNumber>
+                <span class="p-inputgroup-addon" [style]="{'font-family': 'dejavu','font-weight': 900}">DT</span>      
+             </div>
+            </form>
+            <ng-template pTemplate="footer">
+            <p-button icon="pi pi-check" (click)="makePayment(donateamount.value)" label="Submit" styleClass="p-button-text"></p-button>
+        </ng-template>
+         </p-dialog>
           
          </div>
      </div>

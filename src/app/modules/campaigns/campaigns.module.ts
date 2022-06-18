@@ -14,6 +14,7 @@ import {DropdownModule} from 'primeng/dropdown';
 import { FilterPipe } from '../../shared/pipes/filter.pipe';
 import {DividerModule} from 'primeng/divider';
 import { HttpClientModule } from '@angular/common/http';
+import {InputNumberModule} from 'primeng/inputnumber';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,7 @@ import { HttpClientModule } from '@angular/common/http';
     DropdownModule,
     DividerModule,
     HttpClientModule,
-
+    InputNumberModule
   ],
   exports:[
     ListOfCampaignsComponent,

@@ -30,6 +30,13 @@
                 <td>{{campaign.created_by?.name}} {{campaign.created_by?.lastname}} </td>
                 <td  [ngClass]="{'waiting':campaign.status === 'Waiting','accept':campaign.status === 'Accept','reject':campaign.status === 'Reject','publiched':campaign.status === 'Published'}">{{campaign?.status}}</td>
                 <td>
+                    <button
+                    pButton
+                    pRipple
+                    style="margin-right: 0.5rem;"
+                    icon="pi pi-pencil"
+                    class="p-button-rounded p-button-success p-mr-2"
+                  ></button>
                     <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteCampaign(campaign,campaign._id)"></button>
                 </td>
             </tr>

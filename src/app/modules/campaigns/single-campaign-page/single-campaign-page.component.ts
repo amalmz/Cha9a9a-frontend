@@ -8,7 +8,7 @@ import {ConfirmationService, ConfirmEventType, MessageService} from 'primeng/api
 import { FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import { PrimeNGConfig } from 'primeng/api';
 import { DataStripeService } from 'src/app/core/services/data-stripe.service';
-
+import { DonationService } from 'src/app/core/services/donation.service';
 @Component({
   selector: 'app-single-campaign-page',
   templateUrl: './single-campaign-page.component.html',
@@ -25,6 +25,7 @@ export class SingleCampaignPageComponent implements OnInit {
   Comments:any[]=[];
   Allcomments:any;
   CommentForm!:FormGroup;
+  donationForm!:FormGroup;
   page: number = 1;
   count: number = 0;
   Size: number = 3;
@@ -36,10 +37,13 @@ export class SingleCampaignPageComponent implements OnInit {
   paymentHandler: any = null;
   success: boolean = false
   failure:boolean = false
+  displayModal?: boolean;
+  DonorId?:any;
 
   constructor(private route:ActivatedRoute,private campaignService:CampaignService,private primengConfig: PrimeNGConfig,
    private commentService:CommentService, private token : TokenStorageService,private confirmationService: ConfirmationService,
-   private messageService: MessageService, private formBuilder : FormBuilder,private router: Router , private checkout:DataStripeService) { 
+   private messageService: MessageService, private formBuilder : FormBuilder,private router: Router , private checkout:DataStripeService,
+   private donationService:DonationService) { 
      
    }
 
@@ -50,6 +54,9 @@ export class SingleCampaignPageComponent implements OnInit {
     this.idcreator = this.token.getUser().id;
     this.CommentForm = this.formBuilder.group({
       text: new FormControl('',[Validators.required, Validators.minLength(4),Validators.maxLength(100)]),
+     })
+     this.donationForm= this.formBuilder.group({
+      donateamount: new FormControl('',[Validators.required])
      })
      this.invokeStripe();
    }
@@ -80,9 +87,6 @@ export class SingleCampaignPageComponent implements OnInit {
 
      })
    }
-  removeComment(id:number){
-
-  }
   showBasicDialog() {
     this.displayBasic = true;
 }
@@ -144,7 +148,6 @@ public onEdit(commentId:string){
   }
 }
    
-   
 toggleData() {
   this.toDisplay = !this.toDisplay;
 }
@@ -159,9 +162,35 @@ clickCopy(input:any){
   window.getSelection()?.removeAllRanges();
 
 }
+showModalDialog() {
+  this.displayModal = true;
+}
+
+Donation(){
+  const {donateamount} = this.donationForm.value;
+  const user_id = this.token.getUser().id;
+  const campaign_id = this.route.snapshot.params['id'];
+ this.donationService.addDonation(donateamount,campaign_id,user_id).subscribe((response: any) =>{
+  console.log(response);
+}), 
+(error: any) => {
+  alert(error.message);
+}}
 
 
-makePayment(amount: number) {
+makePayment(amount: any) {
+  const {donateamount} = this.donationForm.value;
+  const user_id = this.token.getUser().id;
+  const campaign_id = this.route.snapshot.params['id'];
+ this.donationService.addDonation(donateamount,campaign_id,user_id).subscribe((response: any) =>{
+  console.log(response);
+  const id = response["data"]._id;
+  this.DonorId = id ;
+  console.log("l,rebregreg",id)
+}), 
+(error: any) => {
+  alert(error.message);
+}
   const paymentHandler = (<any>window).StripeCheckout.configure({
     key: 'pk_test_51KzNmnKxDkYllxSnY8T1eQ3VVZCQp8V7PhMi6XgVPVXXTSUWkMjh7wntkBXISJ6sJ3MrhlSpcnCAjj8F04MAqVgt00pJvQXjT3',
     locale: 'auto',
@@ -169,13 +198,22 @@ makePayment(amount: number) {
       console.log(stripeToken);
       paymentstripe(stripeToken);
     },
-  });
+  }
+  );
 
   const paymentstripe = (stripeToken: any) => {
     this.checkout.makePayment(stripeToken).subscribe((data: any) => {
       console.log(data);
       if (data.data === "success") {
         this.success = true;
+        this.donationService.donationStatus(this.DonorId).subscribe((res:any)=>{
+            console.log(res);
+            this.ngOnInit();
+          },
+          (error: any) => {
+            alert(error.message);
+          }        
+        )
         this.messageService.add({key: 'myKey1', severity:'success', summary: 'The donation transferred successfully', detail: 'Detail Text'});
       }
       else {
