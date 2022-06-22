@@ -9,6 +9,9 @@
   justify-content: center;
   margin:2rem;
 }
+.container{
+  margin-bottom: -12rem;
+}
 ::ng-deep .p-input-icon-right {
   margin-right: 2rem;
   }
@@ -36,6 +39,7 @@ h1{
 }
 
 .btn {
+   cursor: pointer;
     border-radius: 20px!important;
     height: 40px;
     width: 160px;
@@ -66,6 +70,7 @@ h1{
   .cards{
     min-height: 500px;
     max-width: 300px;
+    min-width: 300px;
     background: white;
     overflow: hidden;
     border-radius: 10px;

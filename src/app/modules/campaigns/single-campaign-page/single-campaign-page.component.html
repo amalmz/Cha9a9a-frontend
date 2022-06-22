@@ -1,56 +1,72 @@
 <ng-template #nocampaign>
-   <h2>No Campaign to display</h2>
+  <h2>No Campaign to display</h2>
 </ng-template>
 
+<div class="area" >
+            <ul class="circles">
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+            </ul>
+    </div>
 <div *ngIf="campaign;else nocampaign">
-<div class="quarter-ellipse quarter-ellipse3">
-   <div class="row">
-     <div class="cards">
+  <div class="quarter-ellipse quarter-ellipse3">
+    <div class="row">
+      <div class="cards">
         <img class="image1" src="{{url+campaign.image}}">
-     </div>
-     <div class="col">
-       <h1>{{campaign.name}}</h1>
-       <h2>Bénéficiaire: <span>beneficaire</span></h2>
-       <h2>Objectif: <span>{{campaign.objective}}DT</span></h2>
-       <h2>collecté: <span>5 000 DT</span></h2>
-         <div class="buttons">
-            <button class="btn" (click)="showDialog()">Partager</button>      
-            <p-dialog header="Help by sharing" [(visible)]="display" [style]="{width: '50vw',height: '27em'}">
-               <p-divider></p-divider>
-               <div style="display: flex; justify-content: space-evenly;flex-wrap: wrap;">
-                  <a style="text-decoration: none;" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Ftexblog.org%2F2012%2F08%2F29%2Fchanging-the-font-size-in-latex%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">
-                  <button data-href="https://texblog.org/2012/08/29/changing-the-font-size-in-latex/" pButton pRipple class="p-button-outlined p-button-secondary" label="Facebook" icon="pi pi-facebook">        
-                  </button>
-                  </a>
-                  <a style="text-decoration: none;" class="twitter-share-button"
-                  rel="canonical"
-                  href="https://twitter.com/intent/tweet"
-                  data-size="large"
-                  data-text="custom share text"
-                  data-url="https://dev.twitter.com/web/tweet-button"
-                  data-hashtags="example,demo"
-                  data-via="twitterdev"
-                  data-related="twitterapi,twitter"> 
-                    <button pButton pRipple type="button" class="p-button-outlined p-button-secondary" label="Twitter" icon="pi pi-twitter">
-                  </button>
-                 </a>     
-                 <button pButton pRipple type="button" class="p-button-outlined p-button-secondary" label="Instagram" icon="pi pi-instagram"></button>
-                <button pButton pRipple class="p-button-outlined p-button-secondary" type="button" label="Linkedin" icon="pi pi-linkedin"></button>
+      </div>
+      <div class="col">
+        <h1>{{campaign.name}}</h1>
+        <p-progressBar [value]="collected"></p-progressBar>
+        <h2>Bénéficiaire: <span>beneficaire</span></h2>
+        <h2>Objectif: <span>{{campaign.objective}}DT</span></h2>
+        <h2>collecté: <span>{{collected}} DT</span></h2>
+        <div class="buttons">
+          <button class="btn" (click)="showDialog()">Partager</button>
+          <p-dialog header="Help by sharing" [(visible)]="display" [style]="{width: '50vw',height: '27em'}">
+            <p-divider></p-divider>
+            <div style="display: flex; justify-content: space-evenly;flex-wrap: wrap;">
+              <a style="text-decoration: none;" target="_blank"
+                href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Ftexblog.org%2F2012%2F08%2F29%2Fchanging-the-font-size-in-latex%2F&amp;src=sdkpreparse"
+                class="fb-xfbml-parse-ignore">
+                <button data-href="https://texblog.org/2012/08/29/changing-the-font-size-in-latex/" pButton pRipple
+                  class="p-button-outlined p-button-secondary" label="Facebook" icon="pi pi-facebook">
+                </button>
+              </a>
+              <a style="text-decoration: none;" class="twitter-share-button" rel="canonical"
+                href="https://twitter.com/intent/tweet" data-size="large" data-text="custom share text"
+                data-url="https://dev.twitter.com/web/tweet-button" data-hashtags="example,demo" data-via="twitterdev"
+                data-related="twitterapi,twitter">
+                <button pButton pRipple type="button" class="p-button-outlined p-button-secondary" label="Twitter"
+                  icon="pi pi-twitter">
+                </button>
+              </a>
+              <button pButton pRipple type="button" class="p-button-outlined p-button-secondary" label="Instagram"
+                icon="pi pi-instagram"></button>
+              <button pButton pRipple class="p-button-outlined p-button-secondary" type="button" label="Linkedin"
+                icon="pi pi-linkedin"></button>
+            </div>
+            <p-divider></p-divider>
+            <div class="container">
+              <div class="label">
+                Copy Link
               </div>
-              <p-divider></p-divider>
-              <div class="container">
-                <div class="label">
-                  Copy Link
-                </div>
-                <div class="copy-text">
-                  <input #input1 type="text" class="text" value="{{href}}" readonly>
-                  <button click="clickCopy(input1)">
-                    <i class="pi pi-copy"></i>
-                  </button>
-                </div>
+              <div class="copy-text">
+                <input type="text" class="text" value="{{href}}" readonly #input1>
+                <button (click)="clickCopy(input1)">
+                  <i class="pi pi-copy"></i>
+                </button>
               </div>
-            </p-dialog>
-            <!-- <button class="btn" >Soutenir</button>
+            </div>
+          </p-dialog>
+          <!-- <button class="btn" >Soutenir</button>
              <form novalidate (ngSubmit)="Donate()" [formGroup]="stripeForm">
               <input type="text" formControlName="name" placeholder="Full name">
               <input type="number" formControlName="amount" placeholder="Amount">
@@ -59,110 +75,140 @@
                 BUY
               </button>
             </form>  -->
-            <!-- <p-toast key="myKey1"></p-toast>
+          <!-- <p-toast key="myKey1"></p-toast>
             <p-toast key="myKey2"></p-toast>
             <button class="btn" (click)="makePayment(15)" >Soutenir</button>
             <div *ngIf="success">
              </div>
           <div *ngIf="failure"></div> -->
-          <button class="btn" (click)="showModalDialog()" >Soutenir</button>
-          <p-dialog header="Donate to: {{campaign.name}}" [(visible)]="displayModal" [modal]="true" [style]="{width: '50vw'}"
-           [draggable]="false" [resizable]="false">
-            <form  [formGroup]="donationForm">
+          <button class="btn" (click)="showModalDialog()">Soutenir</button>
+          <p-dialog header="Donate to: {{campaign.name}}" [(visible)]="displayModal" [modal]="true"
+            [style]="{width: '50vw'}" [draggable]="false" [resizable]="false">
+            <form [formGroup]="donationForm">
               <!-- <input formControlName="donateamount" type="number" placeholder="Amount" id="donateamount" #donateamount required> -->
               <div class="p-inputgroup" [style]="{'width':'20rem'}">
-                <p-inputNumber mode="decimal" formControlName="donateamount" placeholder="Amount"  [minFractionDigits]="2" id="donateamount" #donateamount></p-inputNumber>
-                <span class="p-inputgroup-addon" [style]="{'font-family': 'dejavu','font-weight': 900}">DT</span>      
-             </div>
+                <p-inputNumber mode="decimal" formControlName="donateamount" placeholder="Amount"
+                  [minFractionDigits]="2" id="donateamount" #donateamount></p-inputNumber>
+                <span class="p-inputgroup-addon" [style]="{'font-family': 'dejavu','font-weight': 900}">DT</span>
+              </div>
             </form>
             <ng-template pTemplate="footer">
-            <p-button icon="pi pi-check" (click)="makePayment(donateamount.value)" label="Submit" styleClass="p-button-text"></p-button>
-        </ng-template>
-         </p-dialog>
-          
-         </div>
-     </div>
-   </div>
-</div>
-
-<div class="col2">
-   <div class="center">
-    <h3>Description du Project</h3>
-    <img class="image2"  src="{{url+campaign.image}}">
-    <p>{{campaign.description}}</p>
-    <div  class="buttons">
-       <button class="btn1">Partager</button>
-       <button class="btn1">Soutenir</button>
-    </div>
-   </div>
-     <div class="col1">
-          <h4>Organisateur</h4><br>
-      <div class="row2">
-         <img class="image3" src="../../../../assets/images/avatar.png">
-        <div class="col" *ngIf="users">
-            <h5>Organisator</h5>
-            <h5>{{users.name}} </h5>
-          </div>
-         <button (click)="showBasicDialog()" class="btn2">Contacter</button>
-         <p-dialog header="Send a message" [(visible)]="displayBasic" [style]="{width: '40vw'}" [baseZIndex]="10000">
-            <div style="display: flex; flex-direction: column;align-items: center;">
-               <input style="margin-bottom: 1rem;width: 25rem;" placeholder="email" type="text" pInputText />
-              <textarea style="width: 25rem;" placeholder="textarea" type="text"  pInputTextarea></textarea>
-            </div>
-            <ng-template pTemplate="footer">
-                <p-button (click)="displayBasic=false" label="Send" styleClass="p-button-text"></p-button>
+              <p-button icon="pi pi-check" (click)="makePayment(donateamount.value)" label="Submit"
+                styleClass="p-button-text"></p-button>
             </ng-template>
-        </p-dialog>
-       </div>
-     </div>
-    <div class="col">
-      <h4>Commentaires</h4>
-      <form [formGroup]="CommentForm" (ngSubmit)="CommentForm.valid && addComment()">
-        <span class="p-float-label">
-          <textarea id="float-input" formControlName="text" rows="5" cols="81" pInputTextarea #comment></textarea>
-          <label for="float-input">Add a comment ....</label>
-         </span>
-         <div *ngIf="CommentForm.controls['text'].errors?.['required'] && (CommentForm.controls['text'].dirty || CommentForm.controls['text'].touched)" class="alert1" >
-            text is required.
-          </div>
-        <button class="btn3" type="submit" [disabled]="!CommentForm.valid" >Send</button> 
-     </form>
-          <div class="comment" *ngFor="let comment of Comments | paginate: {itemsPerPage: Size,currentPage: page,totalItems: count};let i = index">
-               <div class="commentcontent">
-                  <img style="width: 3rem;" src="../../../../assets/images/avatar.png">
-                     <h6 style="font-size: 1rem;font-family: 'dejavu';">{{comment.user_id.name}}</h6>
-                     <h6 style="font-size: 0.5rem; font-family: 'dejavu';margin-left: 1rem;">{{comment.createdAt | date:'short'}}</h6>
-                     <div class="icons" *ngIf="comment.user_id._id === idcreator">
-                        <i (click)="confirm2(comment._id)" class="pi pi-trash" style="cursor:pointer;color: rgb(153, 27, 27);padding-right: 0.5rem;"></i>
-                        <i (click)="toDisplay[i] = !toDisplay[i] "  class="pi pi-pencil" style="cursor:pointer;color: #297aff;"></i>
-                        </div>
-               </div>
-                <div class="parag">
-                   <div *ngIf="toDisplay[i]">
-                     <form [formGroup]="CommentForm" >
-                      <textarea formControlName="text" rows="5" cols="50" pInputTextarea #comment></textarea>
-                       <div *ngIf="CommentForm.controls['text'].errors?.['required'] && (CommentForm.controls['text'].dirty || CommentForm.controls['text'].touched)" class="alert1" >
-                        text is required.
-                      </div>
-                      <i class="pi pi-check" type="submit"  style="font-size: 1.5rem;color: green;margin-left: 24rem;cursor: pointer;"></i>
-                     </form>
-                     </div>
-                 <p *ngIf="!toDisplay[i]" style="margin-top: -1rem">{{comment.text}}</p>
-               </div>
-          </div>
-         <div style="position: absolute; right: 0;bottom: 1rem;">
-            <pagination-controls
-            previousLabel="Prev"
-            nextLabel="Next"
-            (pageChange)="onDataChange($event)"
-          >
-          </pagination-controls>
-         </div>
-          <p-confirmDialog  key="Dialog" [style]="{width: '50vw'}" [baseZIndex]="10000" rejectButtonStyleClass="p-button-text"></p-confirmDialog>
-          <p-toast></p-toast>
+          </p-dialog>
+
+        </div>
+      </div>
     </div>
+  </div>
+  <div class="col2">
+    <div class="center">
+      <h3>Description du Project</h3>
+      <img class="image2" src="{{url+campaign.image}}">
+      <p [ngClass]="{'limitTextHeight': isReadMore}" style="white-space: pre-wrap;">{{campaign.description}}</p>
+      <a class="readmore" (click)="showText()">
+        {{ isReadMore ? 'Read More': 'Read Less' }}
+      </a>
+      <div class="buttons">
+        <button class="btn1">Partager</button>
+        <button class="btn1">Soutenir</button>
+      </div>
+    </div>
+    <div class="col1">
+      <h4>Organisateur</h4><br>
+      <div class="row2">
+        <img class="image3" src="../../../../assets/images/user1.jpg">
+        <div class="col" *ngIf="users">
+          <h5>Organisator</h5>
+          <h5>{{users.name}} </h5>
+        </div>
+        <button (click)="showBasicDialog()" class="btn2">Contacter</button>
+        <p-dialog header="Send a message" [(visible)]="displayBasic" [style]="{width: '40vw'}" [baseZIndex]="10000">
+          <div style="display: flex; flex-direction: column;align-items: center;">
+            <input style="margin-bottom: 1rem;width: 25rem;" placeholder="email" type="text" pInputText />
+            <textarea style="width: 25rem;" placeholder="textarea" type="text" pInputTextarea></textarea>
+          </div>
+          <ng-template pTemplate="footer">
+            <p-button (click)="displayBasic=false" label="Send" styleClass="p-button-text"></p-button>
+          </ng-template>
+        </p-dialog>
+      </div>
+    </div>
+    <div class="col">
+      <p-tabView>
+        <p-tabPanel header="Comments" leftIcon="pi pi-comments">
+          <h4>Commentaires</h4>
+          <form [formGroup]="CommentForm" (ngSubmit)="CommentForm.valid && addComment()">
+            <span class="p-float-label">
+              <textarea id="float-input" formControlName="text" rows="5" cols="81" pInputTextarea #comment></textarea>
+              <label for="float-input">Add a comment ....</label>
+            </span>
+            <div
+              *ngIf="CommentForm.controls['text'].errors?.['required'] && (CommentForm.controls['text'].dirty || CommentForm.controls['text'].touched)"
+              class="alert1">
+              text is required.
+            </div>
+            <button class="btn3" type="submit" [disabled]="!CommentForm.valid">Send</button>
+          </form>
+          <div class="comment"
+            *ngFor="let comment of Comments | paginate: {itemsPerPage: Size,currentPage: page,totalItems: count};let i = index">
+            <div class="commentcontent">
+              <img style=" width: 3rem;border: 0.1rem solid #9689bb;border-radius: 100%;"
+                src="../../../../assets/images/user1.jpg">
+              <h6 style="margin-left: 0.5rem;font-size: 1rem;font-family: 'dejavu';">{{comment.user_id.name}}</h6>
+              <h6 style="font-size: 0.5rem; font-family: 'dejavu';margin-left: 1rem;">{{comment.createdAt |
+                date:'short'}}</h6>
+              <div class="icons" *ngIf="comment.user_id._id === idcreator">
+                <i (click)="confirm2(comment._id)" class="pi pi-trash"
+                  style="cursor:pointer;color: rgb(153, 27, 27);padding-right: 0.5rem;"></i>
+                <i (click)="toDisplay[i] = !toDisplay[i] " class="pi pi-pencil"
+                  style="cursor:pointer;color: #297aff;"></i>
+              </div>
+            </div>
+            <div class="parag">
+              <div *ngIf="toDisplay[i]">
+                <form [formGroup]="CommentForm1">
+                  <textarea formControlName="text" rows="5" cols="50" [(ngModel)]="comment.text" pInputTextarea
+                    #text></textarea>
+                  <div
+                    *ngIf="CommentForm1.controls['text'].errors?.['required'] && (CommentForm1.controls['text'].dirty || CommentForm1.controls['text'].touched)"
+                    class="alert1">
+                    text is required.
+                  </div>
+                  <i (click)="onEdit(comment._id)" class="pi pi-check" type="submit"
+                    style="font-size: 1.5rem;color: green;margin-left: 24rem;cursor: pointer;"></i>
+                </form>
+              </div>
+              <p *ngIf="!toDisplay[i]" style="margin-top: -1rem">{{comment.text}}</p>
+            </div>
+          </div>
+          <div style="position: absolute; right: 0;">
+            <pagination-controls previousLabel="Prev" nextLabel="Next" (pageChange)="onDataChange($event)">
+            </pagination-controls>
+          </div>
+          <p-confirmDialog key="Dialog" [style]="{width: '50vw'}" [baseZIndex]="10000"
+            rejectButtonStyleClass="p-button-text"></p-confirmDialog>
+          <p-toast></p-toast>
+    </p-tabPanel>
+    <p-tabPanel header="Participation" leftIcon="pi pi-box">
+      <h4>Participation</h4>
+      <button pButton type="button" icon="pi pi-star-fill" label="Top Donors" class="p-button-outlined p-button-warning p-button-raised"></button>
+      <div class="row3">
+        <div style="display:flex ; margin-top: 0.8rem;" *ngFor="let d of Donations">
+          <img class="image4" src="../../../../assets/images/user1.jpg">
+          <div class="col" style="margin-top: 0.3rem;">
+            <h5 style="white-space: nowrap;">{{d.user_id?.name}} {{d.user_id?.lastname}}</h5>
+            <div style="    display: flex;align-items: center;">
+              <h5 style="white-space: nowrap; font-weight: bolder;">{{d.donateamount}} DT</h5>
+              <h6 style="margin: auto;">. {{d.createdAt |  date: 'dd MMM yyyy'}}</h6>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </p-tabPanel>
+    </p-tabView>
+  </div>
+  </div>
 </div>
-</div>
-
-
-

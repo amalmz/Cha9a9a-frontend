@@ -14,6 +14,11 @@ export class MyCampaignsComponent implements OnInit {
   url="http://localhost:5000/getfile/";
   statuses!: any[];
   state!:Campaign[];
+  page: number = 1;
+  count: number = 0;
+  Size: number = 4;
+  Sizes: any = [3, 6, 9, 12];
+
   constructor(private userService:UserService,private token : TokenStorageService) { }
 
   ngOnInit(): void {
@@ -32,5 +37,17 @@ export class MyCampaignsComponent implements OnInit {
      console.log("status",this.state)
 
   }) 
+}
+onDataChange(event: any) {
+  this.page = event;
+  this.getUser(this.userId);
+
+}
+onSizeChange(event: any): void {
+  this.Size = event.target.value;
+  this.page = 1;
+  this.getUser(this.userId);
+
+
 }
 }

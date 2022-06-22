@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -10,17 +10,17 @@ import { Campaign } from 'src/app/core/models/campaign';
   templateUrl: './list-of-campaigns.component.html',
   styleUrls: ['./list-of-campaigns.component.css']
 })
-export class ListOfCampaignsComponent implements OnInit {
+export class ListOfCampaignsComponent implements OnInit ,OnDestroy {
   label :string=""
-  Campaign:Campaign[]=[] ;
-  Category:any | null ;
+  Campaign:any[]=[] ;
+  Category:any[]=[]  ;
   selected!:any;
   valueIconRight: any;
   searchkey:string="";
   searchTerm:string="";
   filteredCollect:any[]=[];
   image:string="";
-  category:any | null;
+  category : any ;
   url="http://localhost:5000/getfile/";
   p: number =1 ;
   term: string="" ; 
@@ -51,10 +51,10 @@ export class ListOfCampaignsComponent implements OnInit {
         console.log("campaign",this.Campaign);
         
         this.route.queryParamMap.subscribe(params=>{
-          this.category= params.get('category');
+          this.category = params.get('category');
           console.log("category",this.category);
-          this.filteredCollect = (this.category)? 
-          this.filteredCollect.filter(p => p.category && p.category.name === this.category) : this.Campaign ; //p.category so even if the category is null (bich maya3mach error)
+          this.filteredCollect = (this.category)?
+          this.Campaign.filter(p => p.category && p.category.name === this.category) : this.Campaign ; //p.category so even if the category is null (bich maya3mach error)
           console.log("filteredCollect",this.filteredCollect);
         });
       //   this.route.queryParamMap.subscribe(params=>{

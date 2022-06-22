@@ -1,8 +1,9 @@
 <div class="container" >
     <h1>My Campaigns</h1>
+    <button  type="button" class="btn2" routerLink="/creator/create">Create New Campaign</button>
   <div class="row" >
 <div *ngIf="user" class="row1">
-    <div *ngFor="let campaign of user.campaign"  class="cards">
+    <div *ngFor="let campaign of state | paginate: {itemsPerPage: Size,currentPage: page,totalItems: count};let i = index"  class="cards">
          <img  style="width:200px; height:200px; margin-left: 12px; border-radius: 100%; " src="{{url+campaign.image}}" class="img-fluid rounded-circle w-60"  >
       <div style="display: flex; flex-direction: column;"> 
         <h3 > {{campaign.name}} </h3>
@@ -17,6 +18,14 @@
       </div>
     </div>
   </div>
-  <button  type="button" class="btn2">Create New Campaign</button>
+  <div style=" display: flex;justify-content: flex-end;margin-left: 50rem;">
+
+  <pagination-controls
+  previousLabel="Prev"
+  nextLabel="Next"
+  (pageChange)="onDataChange($event)"
+>
+</pagination-controls>
+</div>
 </div>
 </div>

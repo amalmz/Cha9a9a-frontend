@@ -28,7 +28,7 @@ export class CommentService {
   public deleteComment(campaign_id:string,id:string):Observable<void>{
     return this.http.delete<void>(`${this.apiServerUrl}/comment/${campaign_id}/${id}`)
   }
-  public EditComment(text:string,id:string):Observable<Comment>{
+  public EditComment(id:string,text:string):Observable<Comment>{
     return this.http.put<Comment>(`${this.apiServerUrl}/comment/${id}`,text)
   }
 

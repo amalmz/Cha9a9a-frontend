@@ -15,6 +15,8 @@ import { FilterPipe } from '../../shared/pipes/filter.pipe';
 import {DividerModule} from 'primeng/divider';
 import { HttpClientModule } from '@angular/common/http';
 import {InputNumberModule} from 'primeng/inputnumber';
+import {TabViewModule} from 'primeng/tabview';
+import {ProgressBarModule} from 'primeng/progressbar';
 
 @NgModule({
   declarations: [
@@ -37,7 +39,9 @@ import {InputNumberModule} from 'primeng/inputnumber';
     DropdownModule,
     DividerModule,
     HttpClientModule,
-    InputNumberModule
+    InputNumberModule,
+    TabViewModule,
+    ProgressBarModule
   ],
   exports:[
     ListOfCampaignsComponent,

@@ -9,6 +9,7 @@ import { FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import { PrimeNGConfig } from 'primeng/api';
 import { DataStripeService } from 'src/app/core/services/data-stripe.service';
 import { DonationService } from 'src/app/core/services/donation.service';
+import { Donation } from 'src/app/core/models/donation';
 @Component({
   selector: 'app-single-campaign-page',
   templateUrl: './single-campaign-page.component.html',
@@ -25,6 +26,7 @@ export class SingleCampaignPageComponent implements OnInit {
   Comments:any[]=[];
   Allcomments:any;
   CommentForm!:FormGroup;
+  CommentForm1!:FormGroup;
   donationForm!:FormGroup;
   page: number = 1;
   count: number = 0;
@@ -39,6 +41,11 @@ export class SingleCampaignPageComponent implements OnInit {
   failure:boolean = false
   displayModal?: boolean;
   DonorId?:any;
+  showForm = true ; 
+  donations : any ;
+  Donations: any;
+  collected = 0 ;
+  isReadMore = true
 
   constructor(private route:ActivatedRoute,private campaignService:CampaignService,private primengConfig: PrimeNGConfig,
    private commentService:CommentService, private token : TokenStorageService,private confirmationService: ConfirmationService,
@@ -53,6 +60,9 @@ export class SingleCampaignPageComponent implements OnInit {
     this.getCampaign(id);
     this.idcreator = this.token.getUser().id;
     this.CommentForm = this.formBuilder.group({
+      text: new FormControl('',[Validators.required, Validators.minLength(4),Validators.maxLength(100)]),
+     })
+     this.CommentForm1 = this.formBuilder.group({
       text: new FormControl('',[Validators.required, Validators.minLength(4),Validators.maxLength(100)]),
      })
      this.donationForm= this.formBuilder.group({
@@ -74,7 +84,22 @@ export class SingleCampaignPageComponent implements OnInit {
       console.log("this is the user",this.users)
       this.Comments = this.campaign.comments!.reverse();
       console.log("this is the campaign comments",this.Comments);
+      this.donations = this.campaign.donations; 
+      console.log("this is the donations",this.donations);
+       this.Donations = this.donations.filter((obj:any) => {
+        if(obj.status === true){
+          this.collected +=  obj.donateamount
+        }
+       return obj.status === true;
+      });
+       console.log("this is the donations if it's true",this.Donations);
+       console.log("collected",this.collected);
+
     })
+   }
+
+   showText() {
+      this.isReadMore = !this.isReadMore
    }
 
    addComment(){
@@ -138,9 +163,8 @@ onSizeChange(event: any): void {
 }
 
 public onEdit(commentId:string){
-  const {text}= this.CommentForm.value;
-  this.commentService.EditComment(text,commentId).subscribe((response: any) => {
-    this.Comments.push();
+  const {text}= this.CommentForm1.value;
+  this.commentService.EditComment(commentId,text).subscribe((response: any) => {
     console.log(response);
   }), 
   (error: any) => {
@@ -152,14 +176,9 @@ toggleData() {
   this.toDisplay = !this.toDisplay;
 }
 clickCopy(input:any){
-  // input.select();
-  // document.execCommand('copy');
-  // input.setSelectRange(0,0);
-  let copyText = document.querySelector(".copy-text");
   input.select();
-  document.execCommand("copy");
-  copyText?.classList.add("active");
-  window.getSelection()?.removeAllRanges();
+  document.execCommand('copy');
+  input.setSelectionRange(0, 0);
 
 }
 showModalDialog() {

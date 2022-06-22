@@ -21,7 +21,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     CreateCampaignComponent,
     SideBarComponent,
     CreatorBoardComponent,
-    MyCampaignsComponent
+    MyCampaignsComponent,
+    
   ],
   imports: [
     CommonModule,
@@ -35,7 +36,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FileUploadModule,
     ToastModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxPaginationModule
   ]
 })
 export class CreatorModule { }

@@ -1,13 +1,19 @@
 <p-toast></p-toast>
 <div class="container">
   <div class="card">
-    <form [formGroup]="CampaignForm" (ngSubmit)="createCampaign()">
+    <form [formGroup]="CampaignForm" (ngSubmit)="CampaignForm.valid && createCampaign()">
       <label>Name</label>
-      <input type="text" pInputText formControlName="name"  [style]="{'width':'39rem'}"> 
+      <input type="text"  formControlName="name"  [style]="{'width':'39rem'}" pInputText> 
+      <div *ngIf="CampaignForm.controls['name'].errors?.['name'] && (CampaignForm.controls['name'].dirty || CampaignForm.controls['name'].touched)" class="alert1" >
+        name is required.
+      </div>
        <label>Goal</label>
         <div class="p-inputgroup" [style]="{'width':'39rem'}">
          <p-inputNumber mode="decimal" formControlName="objective" [minFractionDigits]="2"></p-inputNumber>
-         <span class="p-inputgroup-addon" [style]="{'font-family': 'dejavu','font-weight': 900}">DT</span>      
+         <span class="p-inputgroup-addon" [style]="{'font-family': 'dejavu','font-weight': 900}">DT</span>     
+      </div>
+      <div *ngIf="CampaignForm.controls['objective'].errors?.['objective'] && (CampaignForm.controls['objective'].dirty || CampaignForm.controls['objective'].touched)" class="alert1" >
+        objective is required.
       </div>
       <label>Category</label>
       <p-dropdown inputId="dropdown" [options]="categories" formControlName="category" [style]="{'width':'39rem'}" [autoDisplayFirst]="false" optionLabel="name"></p-dropdown>
@@ -15,7 +21,7 @@
       <p-editor formControlName="description" type="text" [style]="{'height':'20rem'}"></p-editor>
       <label>Image</label>
       <input type="file" class="choose" (change)="onFileSelect($event)" />
-      <button type="submit">Create My Campaign</button>
+      <button type="submit" [disabled]="!CampaignForm.valid" >Create My Campaign</button>
   </form>
 </div>
 </div>

@@ -9,10 +9,14 @@ h3{
     font-family: 'dejavu';
 
   }
+  ::ng-deep .ngx-pagination .current{
+    background: #ad6080!important;
+  }
   h1{
     font-family: 'dejavu';
-    color: white;
+    color: rgb(167 74 115);
     margin-left: 1rem;
+    margin-top: 3rem;
   }
   .row{
     display: flex;
@@ -127,16 +131,19 @@ h3{
     margin-left: 10.7rem;
   }
   .btn2{
-    width: 500px;
+    cursor: pointer;
+    width: 13rem;
     height: 55px;
     border-radius: 10px;
-    margin-bottom: 50px ;
-    font-size: 26px;
+    margin-bottom: 10px ;
+    margin-left: 1rem;
+    font-size: 16px;
     background-color: #A8587D;
-    margin-top: 50px;
+    margin-top: 10px;
     border-color: #f8f9fa;
     color: white;
     font-family: 'dejavu';
+    font-weight: 900;
     border: white;
 
    }

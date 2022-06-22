@@ -8,4 +8,5 @@ export class Campaign {
     created_by?:string;
     status?:string;
     comments?:any[]
+    donations?:any[]
   }
