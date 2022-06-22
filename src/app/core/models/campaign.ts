@@ -1,7 +1,7 @@
 export class Campaign {
     _id?: string;
     name?: string;
-    objective?: Number;
+    objective?: any;
     category?:string;
     description?: string;
     image?: string;

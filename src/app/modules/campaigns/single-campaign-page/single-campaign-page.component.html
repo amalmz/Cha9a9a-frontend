@@ -24,8 +24,7 @@
       </div>
       <div class="col">
         <h1>{{campaign.name}}</h1>
-        <p-progressBar [value]="collected"></p-progressBar>
-        <h2>Bénéficiaire: <span>beneficaire</span></h2>
+        <p-progressBar [value]="value" [style]="{width: '23rem'}"></p-progressBar>
         <h2>Objectif: <span>{{campaign.objective}}DT</span></h2>
         <h2>collecté: <span>{{collected}} DT</span></h2>
         <div class="buttons">
@@ -193,9 +192,29 @@
     </p-tabPanel>
     <p-tabPanel header="Participation" leftIcon="pi pi-box">
       <h4>Participation</h4>
-      <button pButton type="button" icon="pi pi-star-fill" label="Top Donors" class="p-button-outlined p-button-warning p-button-raised"></button>
+      <button pButton  (click)="showDialog1()"  type="button" icon="pi pi-star-fill" label="Top Donors" class="p-button-outlined p-button-warning p-button-raised"></button>
+      <p-dialog header="Top Donors" [(visible)]="display1" [style]="{width: '26rem', height: '26rem'}">
+        <p-table [value]="Donations" [scrollable]="true" scrollHeight="400px">
+          <ng-template pTemplate="body" let-Donations>
+              <tr>
+                  <td style="min-width:200px">
+                    <div style="display:flex ; margin-top: 0.8rem;align-items: center;">
+                      <img class="image4" style="width: 3rem;height: 3rem;" src="../../../../assets/images/user1.jpg">
+                      <div class="col" style="margin-top: 0.3rem;">
+                        <h5 style="white-space: nowrap;">{{Donations.user_id?.name}} {{Donations.user_id?.lastname}}</h5>
+                        <div style="    display: flex;align-items: center;">
+                          <h5 style="white-space: nowrap; font-weight: bolder;">{{Donations.donateamount}} DT</h5>
+                          <h6 style="margin: auto;">. {{Donations.createdAt |  date: 'dd MMM yyyy'}}</h6>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+              </tr>
+          </ng-template>
+      </p-table>
+    </p-dialog>
       <div class="row3">
-        <div style="display:flex ; margin-top: 0.8rem;" *ngFor="let d of Donations">
+        <div style="display:flex ; margin:0.35rem" *ngFor="let d of Donations">
           <img class="image4" src="../../../../assets/images/user1.jpg">
           <div class="col" style="margin-top: 0.3rem;">
             <h5 style="white-space: nowrap;">{{d.user_id?.name}} {{d.user_id?.lastname}}</h5>

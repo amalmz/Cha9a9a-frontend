@@ -4,7 +4,7 @@ import { CampaignService } from 'src/app/core/services/campaign.service';
 import { Campaign } from 'src/app/core/models/campaign';
 import { CommentService } from 'src/app/core/services/comment.service';
 import { TokenStorageService } from 'src/app/core/services/token-storage.service';
-import {ConfirmationService, ConfirmEventType, MessageService} from 'primeng/api';
+import {ConfirmationService, ConfirmEventType, LazyLoadEvent, MessageService} from 'primeng/api';
 import { FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import { PrimeNGConfig } from 'primeng/api';
 import { DataStripeService } from 'src/app/core/services/data-stripe.service';
@@ -35,6 +35,7 @@ export class SingleCampaignPageComponent implements OnInit {
   displayBasic!: boolean;
   toDisplay:any ={};
   display: boolean = false;
+  display1: boolean = false;
   public href: string = "";
   paymentHandler: any = null;
   success: boolean = false
@@ -46,6 +47,7 @@ export class SingleCampaignPageComponent implements OnInit {
   Donations: any;
   collected = 0 ;
   isReadMore = true
+  value: number = 0;
 
   constructor(private route:ActivatedRoute,private campaignService:CampaignService,private primengConfig: PrimeNGConfig,
    private commentService:CommentService, private token : TokenStorageService,private confirmationService: ConfirmationService,
@@ -69,12 +71,14 @@ export class SingleCampaignPageComponent implements OnInit {
       donateamount: new FormControl('',[Validators.required])
      })
      this.invokeStripe();
+   
    }
    getURL(){
     this.href ="http://localhost:4200"+ this.router.url;
     console.log(this.href)
 
    }
+   
    getCampaign(id:string){
     this.campaignService.getCampaignById(id).subscribe((res:any) =>{
       this.campaign=res["data"];
@@ -86,10 +90,16 @@ export class SingleCampaignPageComponent implements OnInit {
       console.log("this is the campaign comments",this.Comments);
       this.donations = this.campaign.donations; 
       console.log("this is the donations",this.donations);
+      let interval = setInterval(() => {
+        this.value = Math.round((this.collected / this.campaign.objective)*100);
+            this.messageService.add({severity: 'info', summary: 'Success', detail: 'Process Completed'});
+            clearInterval(interval);
+    }, 2000);
        this.Donations = this.donations.filter((obj:any) => {
         if(obj.status === true){
           this.collected +=  obj.donateamount
         }
+        
        return obj.status === true;
       });
        console.log("this is the donations if it's true",this.Donations);
@@ -97,7 +107,6 @@ export class SingleCampaignPageComponent implements OnInit {
 
     })
    }
-
    showText() {
       this.isReadMore = !this.isReadMore
    }
@@ -185,6 +194,9 @@ showModalDialog() {
   this.displayModal = true;
 }
 
+showDialog1() {
+  this.display1 = true;
+}
 Donation(){
   const {donateamount} = this.donationForm.value;
   const user_id = this.token.getUser().id;

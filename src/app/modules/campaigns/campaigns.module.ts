@@ -17,6 +17,7 @@ import { HttpClientModule } from '@angular/common/http';
 import {InputNumberModule} from 'primeng/inputnumber';
 import {TabViewModule} from 'primeng/tabview';
 import {ProgressBarModule} from 'primeng/progressbar';
+import {TableModule} from 'primeng/table';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import {ProgressBarModule} from 'primeng/progressbar';
     HttpClientModule,
     InputNumberModule,
     TabViewModule,
-    ProgressBarModule
+    ProgressBarModule,
+    TableModule
   ],
   exports:[
     ListOfCampaignsComponent,
