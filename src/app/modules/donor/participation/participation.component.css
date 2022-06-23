@@ -1,0 +1,10 @@
+::ng-deep 
+.p-datatable {border: 1px solid #0000003b;
+width: 70rem;
+}
+h1{
+    font-family: 'dejavu';
+    color: rgb(167 74 115);
+    margin-left: 1rem;
+    margin-top: 3rem;
+  }

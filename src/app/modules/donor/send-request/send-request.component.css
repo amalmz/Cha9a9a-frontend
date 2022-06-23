@@ -1,0 +1,80 @@
+h1{
+  font-family: 'dejavu';
+    color: rgb(167 74 115);
+    margin-left: 1rem;
+    margin-top: 3rem;
+    text-align: center;
+}
+
+.container{
+    display: flex;
+    justify-content: center;
+  }
+  .card{
+    width: 700px;
+    background: white;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 0 20px 2px #d0d0d0;
+    padding-top: 1rem;
+  }
+  form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  label{
+  margin: 1rem 0rem;
+  color: #A8587D;
+  font-family: 'dejavu';
+  font-weight: bolder;
+  align-self: start;
+  margin-left: 3rem;
+  
+  }
+  ::ng-deep .p-button.p-fileupload-choose{
+    background-color: #b06285;
+    border: none;
+    
+  }
+  
+  ::ng-deep .p-button.p-fileupload-choose:hover{
+    background-color: #c188a2;
+    border: none;
+  }
+   p-fileupload{
+    align-self: flex-start;
+    margin-left: 2rem;
+  }
+  button{
+      width:15rem ;
+      height: 3rem;
+      cursor: pointer;
+      border-radius: 10px;
+      margin-bottom: 50px;
+      font-size: 15px;
+      font-weight: 900;
+      background-color: #A8587D;
+      margin-top: 50px;
+      border-color: #f8f9fa;
+      color: white;
+      font-family: 'dejavu';
+      border: white;
+  }
+  .choose::-webkit-file-upload-button {
+    color: white;
+    display: inline-block;
+    background: #A8587D;
+    border: none;
+    padding: 7px 15px;
+    font-weight: 700;
+    border-radius: 3px;
+    white-space: nowrap;
+    cursor: pointer;
+    font-size: 10pt;
+  }
+  .choose{
+    align-self: flex-start;
+    margin-left: 2rem;
+  }

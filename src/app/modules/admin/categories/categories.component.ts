@@ -21,6 +21,7 @@ export class CategoriesComponent implements OnInit {
   statuses!: any[];
   categoryForm!:FormGroup ;
   errorMessage = '';
+  categoryForm1!:FormGroup ;
 
 
   constructor(private categoryService:CategoryService,
@@ -35,6 +36,9 @@ export class CategoriesComponent implements OnInit {
         this.categoryForm = this.formBuilder.group({
           name: new FormControl(''),
         });
+        this.categoryForm1 = this.formBuilder.group({
+            name: new FormControl(''),
+          });
   }
   openNew() {
     this.category={};
@@ -93,13 +97,28 @@ saveCategory() {
     this.submitted = true;
     if (this.category.name?.trim()) {
         if (this.category._id) {
+            const {name} = this.categoryForm1.value;
+            console.log(name)
             this.categories[this.findIndexById(this.category._id)] = this.category;
+           this.categoryService.updateCategorie(name,this.category._id).subscribe((res:any)=>{
+            console.log('res',res)
+         },
+         (error: any) => {
+             alert(error.message);
+           })
             this.messageService.add({severity:'success', summary: 'Successful', detail: 'category Updated', life: 3000});
         }
         else {
             const {name} = this.categoryForm.value;
-            console.log('éaaa',name);
-            this.messageService.add({severity:'success', summary: 'Successful', detail: 'category Created', life: 3000});
+            console.log('éafsdfaa',name);
+            this.categoryService.createCategorie(name).subscribe((res:any)=>{
+               console.log('res',res)
+               this.messageService.add({severity:'success', summary: 'Successful', detail: 'category Created', life: 3000});
+            },
+            (error: any) => {
+                console.log('error',error)
+                alert(error.message);
+              })
         }
 
         this.categories = [...this.categories];

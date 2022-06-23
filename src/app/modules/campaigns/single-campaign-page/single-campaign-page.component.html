@@ -90,6 +90,10 @@
                   [minFractionDigits]="2" id="donateamount" #donateamount></p-inputNumber>
                 <span class="p-inputgroup-addon" [style]="{'font-family': 'dejavu','font-weight': 900}">DT</span>
               </div>
+              <div class="field-checkbox" style="margin-top: 1rem;">
+              <p-checkbox formControlName="anonymous" [(ngModel)]="checked" [binary]="true" inputId="binary" [trueValue]="'true'" [falseValue]="'false'"></p-checkbox>
+              <label style="margin-left: 0.2rem;">Anonymous</label>
+              </div>
             </form>
             <ng-template pTemplate="footer">
               <p-button icon="pi pi-check" (click)="makePayment(donateamount.value)" label="Submit"
@@ -155,7 +159,7 @@
             <div class="commentcontent">
               <img style=" width: 3rem;border: 0.1rem solid #9689bb;border-radius: 100%;"
                 src="../../../../assets/images/user1.jpg">
-              <h6 style="margin-left: 0.5rem;font-size: 1rem;font-family: 'dejavu';">{{comment.user_id.name}}</h6>
+              <h6 style="margin-left: 0.5rem;font-size: 1rem;font-family: 'dejavu';">{{comment.user_id.name}} {{comment.user_id.lastname}}</h6>
               <h6 style="font-size: 0.5rem; font-family: 'dejavu';margin-left: 1rem;">{{comment.createdAt |
                 date:'short'}}</h6>
               <div class="icons" *ngIf="comment.user_id._id === idcreator">
@@ -194,15 +198,16 @@
       <h4>Participation</h4>
       <button pButton  (click)="showDialog1()"  type="button" icon="pi pi-star-fill" label="Top Donors" class="p-button-outlined p-button-warning p-button-raised"></button>
       <p-dialog header="Top Donors" [(visible)]="display1" [style]="{width: '26rem', height: '26rem'}">
-        <p-table [value]="Donations" [scrollable]="true" scrollHeight="400px">
+        <p-table [value]="Donations" [scrollable]="true" sortField="donateamount"  [sortOrder]="-1" scrollHeight="600px">
           <ng-template pTemplate="body" let-Donations>
               <tr>
                   <td style="min-width:200px">
                     <div style="display:flex ; margin-top: 0.8rem;align-items: center;">
                       <img class="image4" style="width: 3rem;height: 3rem;" src="../../../../assets/images/user1.jpg">
                       <div class="col" style="margin-top: 0.3rem;">
-                        <h5 style="white-space: nowrap;">{{Donations.user_id?.name}} {{Donations.user_id?.lastname}}</h5>
-                        <div style="    display: flex;align-items: center;">
+                        <h5 *ngIf="!Donations.anonymous" style="white-space: nowrap;">{{Donations.user_id?.name}} {{Donations.user_id?.lastname}}</h5>
+                          <h5 *ngIf="Donations.anonymous" style="white-space: nowrap;">Anonymous</h5>
+                        <div style="display: flex;align-items: center;">
                           <h5 style="white-space: nowrap; font-weight: bolder;">{{Donations.donateamount}} DT</h5>
                           <h6 style="margin: auto;">. {{Donations.createdAt |  date: 'dd MMM yyyy'}}</h6>
                         </div>
@@ -217,8 +222,9 @@
         <div style="display:flex ; margin:0.35rem" *ngFor="let d of Donations">
           <img class="image4" src="../../../../assets/images/user1.jpg">
           <div class="col" style="margin-top: 0.3rem;">
-            <h5 style="white-space: nowrap;">{{d.user_id?.name}} {{d.user_id?.lastname}}</h5>
-            <div style="    display: flex;align-items: center;">
+            <h5 *ngIf="!d.anonymous" style="white-space: nowrap;">{{d.user_id?.name}} {{d.user_id?.lastname}}</h5>
+            <h5 *ngIf="d.anonymous" style="white-space: nowrap;">Anonymous</h5>
+            <div style="display: flex;align-items: center;">
               <h5 style="white-space: nowrap; font-weight: bolder;">{{d.donateamount}} DT</h5>
               <h6 style="margin: auto;">. {{d.createdAt |  date: 'dd MMM yyyy'}}</h6>
             </div>

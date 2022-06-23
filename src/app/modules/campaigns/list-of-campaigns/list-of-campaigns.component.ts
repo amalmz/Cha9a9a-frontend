@@ -29,6 +29,8 @@ export class ListOfCampaignsComponent implements OnInit ,OnDestroy {
   page: number = 1;
   limit: number = 9;
   total: number = 0;
+  donations: any;
+  collected :any ;
   constructor(private route :ActivatedRoute, private campaignService :CampaignService, private categoryService :CategoryService, private router:Router) { }
 
   functioncall(event: any) {
@@ -49,7 +51,6 @@ export class ListOfCampaignsComponent implements OnInit ,OnDestroy {
         this.total= response["total"];
         console.log("total",this.total);
         console.log("campaign",this.Campaign);
-        
         this.route.queryParamMap.subscribe(params=>{
           this.category = params.get('category');
           console.log("category",this.category);

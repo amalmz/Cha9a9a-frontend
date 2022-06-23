@@ -21,6 +21,7 @@ import {DropdownModule} from 'primeng/dropdown';
 import { ContactUsComponent } from './modules/contact-us/contact-us.component';
 import {ToastModule} from 'primeng/toast';
 import { FooterComponent } from './core/footer/footer.component';
+import { DonorModule } from './modules/donor/donor.module';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { FooterComponent } from './core/footer/footer.component';
     CreatorModule,
     DropdownModule,
     ToastModule,
+    DonorModule
 
 
   

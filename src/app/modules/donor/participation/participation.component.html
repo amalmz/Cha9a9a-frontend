@@ -1,0 +1,20 @@
+<h1>My Participation</h1>
+<p-table [value]="Donations" responsiveLayout="scroll">
+    <ng-template pTemplate="header">
+        <tr>
+            <th>campaign</th>
+            <th>Amount</th>
+            <th>Created At</th>
+            <th>Anonymous</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-Donations>
+        <tr>
+            <td>{{Donations.campaign_id.name}}</td>
+            <td>{{Donations.donateamount}}</td>
+            <td>{{Donations.createdAt | date}}</td>
+            <td>{{Donations.anonymous}}</td>
+
+        </tr>
+    </ng-template>
+</p-table>

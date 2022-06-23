@@ -48,7 +48,10 @@ export class SingleCampaignPageComponent implements OnInit {
   collected = 0 ;
   isReadMore = true
   value: number = 0;
-
+  checked: boolean = false;
+  mycheckboxWithStringValue: string = '';
+  anonymous:any ;
+   sortedArray:any;
   constructor(private route:ActivatedRoute,private campaignService:CampaignService,private primengConfig: PrimeNGConfig,
    private commentService:CommentService, private token : TokenStorageService,private confirmationService: ConfirmationService,
    private messageService: MessageService, private formBuilder : FormBuilder,private router: Router , private checkout:DataStripeService,
@@ -68,11 +71,16 @@ export class SingleCampaignPageComponent implements OnInit {
       text: new FormControl('',[Validators.required, Validators.minLength(4),Validators.maxLength(100)]),
      })
      this.donationForm= this.formBuilder.group({
-      donateamount: new FormControl('',[Validators.required])
+      donateamount: new FormControl('',[Validators.required]),
+      anonymous:new FormControl('',[Validators.required])
+
      })
      this.invokeStripe();
    
    }
+   change() {
+    this.mycheckboxWithStringValue = this.checked ? 'true' : 'false';
+  }
    getURL(){
     this.href ="http://localhost:4200"+ this.router.url;
     console.log(this.href)
@@ -92,14 +100,14 @@ export class SingleCampaignPageComponent implements OnInit {
       console.log("this is the donations",this.donations);
       let interval = setInterval(() => {
         this.value = Math.round((this.collected / this.campaign.objective)*100);
-            this.messageService.add({severity: 'info', summary: 'Success', detail: 'Process Completed'});
             clearInterval(interval);
     }, 2000);
+
        this.Donations = this.donations.filter((obj:any) => {
         if(obj.status === true){
           this.collected +=  obj.donateamount
+          this.anonymous = obj.anonymous
         }
-        
        return obj.status === true;
       });
        console.log("this is the donations if it's true",this.Donations);
@@ -198,10 +206,10 @@ showDialog1() {
   this.display1 = true;
 }
 Donation(){
-  const {donateamount} = this.donationForm.value;
+  const {donateamount,anonymous} = this.donationForm.value;
   const user_id = this.token.getUser().id;
   const campaign_id = this.route.snapshot.params['id'];
- this.donationService.addDonation(donateamount,campaign_id,user_id).subscribe((response: any) =>{
+ this.donationService.addDonation(donateamount,anonymous,campaign_id,user_id).subscribe((response: any) =>{
   console.log(response);
 }), 
 (error: any) => {
@@ -210,10 +218,10 @@ Donation(){
 
 
 makePayment(amount: any) {
-  const {donateamount} = this.donationForm.value;
+  const {donateamount,anonymous} = this.donationForm.value;
   const user_id = this.token.getUser().id;
   const campaign_id = this.route.snapshot.params['id'];
- this.donationService.addDonation(donateamount,campaign_id,user_id).subscribe((response: any) =>{
+ this.donationService.addDonation(donateamount,anonymous,campaign_id,user_id).subscribe((response: any) =>{
   console.log(response);
   const id = response["data"]._id;
   this.DonorId = id ;

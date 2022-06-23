@@ -18,6 +18,7 @@ import {InputNumberModule} from 'primeng/inputnumber';
 import {TabViewModule} from 'primeng/tabview';
 import {ProgressBarModule} from 'primeng/progressbar';
 import {TableModule} from 'primeng/table';
+import {CheckboxModule} from 'primeng/checkbox';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import {TableModule} from 'primeng/table';
     InputNumberModule,
     TabViewModule,
     ProgressBarModule,
-    TableModule
+    TableModule,
+    CheckboxModule
   ],
   exports:[
     ListOfCampaignsComponent,

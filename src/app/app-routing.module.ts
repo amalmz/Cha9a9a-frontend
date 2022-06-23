@@ -16,6 +16,9 @@ import { MyCampaignsComponent } from './modules/creator/my-campaigns/my-campaign
 import { HomePageComponent } from './modules/home/home-page/home-page.component';
 import { AuthGuard } from './core/services/auth.guard';
 import { RequestsComponent } from './modules/admin/requests/requests.component';
+import { DonorBoardComponent } from './modules/donor/donor-board/donor-board.component';
+import { ParticipationComponent } from './modules/donor/participation/participation.component';
+import { SendRequestComponent } from './modules/donor/send-request/send-request.component';
 const routes: Routes = [
   {path:'home',component:HomePageComponent},
   {path:'signin',component:SigninComponent},
@@ -60,6 +63,21 @@ data: {
     component:CreateCampaignComponent
   }
 ]},
+{path:'donor',component:DonorBoardComponent,
+canActivate: [AuthGuard],
+data: {
+  roles: 'ROLE_DONOR'
+},
+children:[{
+  path:'participation',
+  component:ParticipationComponent
+},
+{
+  path:'request',
+  component:SendRequestComponent
+}
+]
+},
 { path: '**', redirectTo: 'home' },
 
 ]

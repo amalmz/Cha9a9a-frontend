@@ -232,6 +232,9 @@ p-tabview{
 ::ng-deep .p-datatable-scrollable .p-datatable-wrapper {
   overflow: hidden!important;
 }
+::ng-deep.p-dialog .p-dialog-header {
+   padding-bottom: 0rem;
+}
 .container {
   position:absolute;
 }
@@ -317,6 +320,7 @@ p-tabview{
     font-family: 'dejavu';
     font-weight: bold;
     font-size: 0.8rem;
+    cursor: pointer;
 }
 
 .circles{

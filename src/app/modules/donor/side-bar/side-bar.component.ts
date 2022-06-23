@@ -19,22 +19,16 @@ export class SideBarComponent implements OnInit {
           routerLink:['users']
       },
       {
-          label: 'My Campaigns',
+          label: 'Participation',
           icon: 'pi pi-heart-fill',
-          routerLink:['MyCampaigns']
+          routerLink:['participation']
       },
       {
-          label: 'Create new Campaign ',
+          label: 'Requests',
           icon: 'pi pi-box',
-          routerLink:['create']
+          routerLink:['request']
       },
-      {
-        label: 'Participation',
-        icon: 'pi pi-list',
-        routerLink:['category']
-
-    },
   ];
   }
+  }
 
-}
