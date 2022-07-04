@@ -3,7 +3,10 @@ import { ConfirmationService, ConfirmEventType, MessageService } from 'primeng/a
 import { Campaign } from 'src/app/core/models/campaign';
 import { CampaignService } from 'src/app/core/services/campaign.service';
 import { HttpErrorResponse } from '@angular/common/http';
-
+import { RequestService } from 'src/app/core/services/request.service';
+import { Request } from 'src/app/core/models/request';
+import { User } from 'src/app/core/models/user';
+import { UserService } from 'src/app/core/services/user.service';
 @Component({
   selector: 'app-requests',
   templateUrl: './requests.component.html',
@@ -11,17 +14,22 @@ import { HttpErrorResponse } from '@angular/common/http';
 })
 export class RequestsComponent implements OnInit {
 statu = "Waiting";
+url="http://localhost:5000/getfile/";
 Campaigns:Campaign[]=[] ;
+Requests: Request[]=[] ;
+Request?: Request ;
 campaignDialog!: boolean;
 campaign!: Campaign;
 selectedCampaign!: Campaign[] | null;
 submitted!: boolean;
 status?:string;
   constructor(private campaignService :CampaignService,
-    private messageService: MessageService, private confirmationService: ConfirmationService) { }
+    private messageService: MessageService, private confirmationService: ConfirmationService,
+    private requestService:RequestService, private userService: UserService) { }
 
   ngOnInit(): void {
     this.getCampaigns();
+    this.getRequests();
   }
   public getCampaigns(): void {
     this.campaignService.getCampaignByStatus(this.statu).subscribe(
@@ -33,6 +41,16 @@ status?:string;
          alert(error.message);
        }
      )}
+     public getRequests(): void {
+      this.requestService.getRequests().subscribe(
+         (response: any) => {        
+           this.Requests = response["data"];
+           console.log('campaaigns',this.Requests)
+         },
+         (error: HttpErrorResponse) => {
+           alert(error.message);
+         }
+       )}
      openNew() {
       this.campaign={};
       this.submitted = false;
@@ -89,6 +107,38 @@ RejectCampaign(campaign: Campaign,id:string) {
           console.log("campaign._id",campaign._id);
           this.onUpdateCampaign(campaign._id,status);
           this.messageService.add({severity:'success', summary: 'Successful', detail: 'Campaign is rejected', life: 3000});
+      },
+      reject: (type:any) => {
+        switch(type) {
+            case ConfirmEventType.REJECT:
+                this.messageService.add({severity:'error', summary:'Rejected', detail:'You have rejected'});
+            break;
+            case ConfirmEventType.CANCEL:
+                this.messageService.add({severity:'warn', summary:'Cancelled', detail:'You have cancelled'});
+            break;
+        }
+    },
+});
+}
+onUpgrade(id:string){
+  this.userService.UpgradeUser(id).subscribe((response: any) => {
+    console.log(response);
+  },
+  (error: any) => {
+    alert(error.message);
+  }
+);
+}
+UpgradeUser(Request:Request) {
+  this.confirmationService.confirm({
+      message: 'Do you want to accept this campaign?',
+      header: 'Confirm',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
+        this.Requests = this.Requests.filter(val => val._id !== Request.user_id._id);
+        console.log("user_id._id",Request.user_id._id);
+        this.onUpgrade(Request.user_id._id);
+          this.messageService.add({severity:'success', summary: 'Successful', detail: 'User is successfully upgraded', life: 3000});
       },
       reject: (type:any) => {
         switch(type) {

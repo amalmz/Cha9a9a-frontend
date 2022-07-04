@@ -3,12 +3,12 @@
         <form *ngIf="!isLoggedIn" [formGroup]="userForm" (ngSubmit)="userForm.valid && onFormSubmit()">
            <div class="container">
                      <div class="h1container"  >
-                       <h1>Bienvenue</h1>
+                       <h1>Welcome</h1>
                      </div>
                <div class="inputcontainer">
                   <!-- email input-->
                       <div class="form-group">
-                         <input type="email"  placeholder="Adresse e-mail" formControlName="email">
+                         <input type="email"  placeholder="Enter e-mail" formControlName="email">
                           <div *ngIf="userForm.controls['email'].invalid && userForm.controls['email'].dirty" class="alert alert-danger">
                              email is invalid
                            </div>
@@ -19,7 +19,7 @@
                <!-- pwd input-->
                        <div class="inputContainer" style="position: relative;">
                          <i class="icon" [class]="show_eye ? 'pi pi-eye' : 'pi pi-eye-slash'" (click)="showPassword()"></i>
-                         <input class="Field" type="password" placeholder="Mot de passe" formControlName="password" [type]="show_button ? 'text' : 'password'">
+                         <input class="Field" type="password" placeholder="Enter password" formControlName="password" [type]="show_button ? 'text' : 'password'">
 
                          </div>
                          <div *ngIf="userForm.controls['password'].invalid && userForm.controls['password'].dirty " class="alert alert-danger">
@@ -33,8 +33,8 @@
 
                  <!-- pwd input-->
                     <div class="btn1">
-                       <button type="submit" [disabled]="!userForm.valid" class="btn">Créez votre compte</button>
-                       <h2><a href="#"> Mot de passe oublié ?</a></h2>
+                       <button type="submit" [disabled]="!userForm.valid" class="btn">Login</button>
+                       <h2><a href="#"> Forget password ? Click here</a></h2>
                        <div class="form-group">
                            <div class="alert alert-danger" role="alert" *ngIf="isLoginFailed" >Login failed: {{ errorMessage }}</div>
                       </div>

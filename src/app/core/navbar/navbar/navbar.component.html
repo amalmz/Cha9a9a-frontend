@@ -4,18 +4,18 @@
           <ul style="position: absolute; z-index: 100; padding-top: 1rem; " >
             <li>
               <a class="nav-link" href="/home"  style=" color: rgb(255, 255, 255)!important;
-              padding-top: 1.3rem;">Accueil</a>
+              padding-top: 1.3rem;">Home</a>
             </li>
         <li >
           <a class="nav-link" href="#" routerLink="/allcampaigns" style=" color: rgb(255, 255, 255)!important;
-          padding-top: 1.3rem;">Toutes les collectes</a>
+          padding-top: 1.3rem;">All Campaigns</a>
         </li>
         <li>
           <a href="/home">
           <img src="../../assets/images/MicrosoftTeams-image.png" >
         </a>
         </li>
-        <li >
+        <li *ngIf="!isLoggedIn" >
           <a class="nav-link" href="#" style=" color: rgb(255, 255, 255)!important;  padding-top: 1.3rem; ">News</a>
         </li>
         <li >
@@ -34,10 +34,10 @@
           <ul style="position: absolute;right: -27vw;" >
           <li *ngIf="!isLoggedIn">
              <div class="dropdown" >
-               <span>Connexion <i style="font-size: 1.8rem;vertical-align: middle;" class='fas fa-user-circle'></i></span>
+               <span>Connection <i style="font-size: 1.8rem;vertical-align: middle;" class='fas fa-user-circle'></i></span>
              <div class="dropdown-content">
-             <a class="dropdown-item" href="/signin" >Connexion</a> 
-             <a class="dropdown-item" href="/signup">Inscription</a>
+             <a class="dropdown-item" href="/signin" >Sign in</a> 
+             <a class="dropdown-item" href="/signup">Sign Up</a>
 
               </div>
                 </div>

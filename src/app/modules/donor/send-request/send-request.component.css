@@ -5,6 +5,9 @@ h1{
     margin-top: 3rem;
     text-align: center;
 }
+.alert1{
+  color: red;
+}
 
 .container{
     display: flex;

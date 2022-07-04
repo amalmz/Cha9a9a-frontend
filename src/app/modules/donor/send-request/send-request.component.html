@@ -2,20 +2,20 @@
 <p-toast></p-toast>
 <div class="container">
   <div class="card">
-    <form [formGroup]="RequestForm" (ngSubmit)="RequestForm.valid && createCampaign()">
+    <form [formGroup]="RequestForm" (ngSubmit)="createCampaign()">
       <label>Subject</label>
       <input type="text"  formControlName="subject"  [style]="{'width':'39rem'}" pInputText> 
       <div *ngIf="RequestForm.controls['subject'].errors?.['subject'] && (RequestForm.controls['subject'].dirty || RequestForm.controls['subject'].touched)" class="alert1" >
         subject is required.
       </div>
       <label>Description</label>
-      <textarea type="text"  formControlName="description"  [style]="{'width':'39rem'}" pInputText></textarea>
+      <textarea type="text"  formControlName="description"  [style]="{'width':'39rem'}" pInputTextarea></textarea>
       <div *ngIf="RequestForm.controls['description'].errors?.['description'] && (RequestForm.controls['description'].dirty || RequestForm.controls['description'].touched)" class="alert1" >
         description is required.
       </div>
       <label>ID Card</label>
       <input type="file" class="choose" (change)="onFileSelect($event)" />
-      <button type="submit" [disabled]="!RequestForm.valid" >Send a Request</button>
+      <button type="submit" >Send a Request</button>
   </form>
 </div>
 </div>

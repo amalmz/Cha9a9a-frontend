@@ -17,6 +17,7 @@ export class SendRequestComponent implements OnInit {
   uploadedFiles: any[] = [];
   RequestForm!:FormGroup ;
   imageData!:string;
+  
   constructor(private messageService: MessageService,
     private fb : FormBuilder,private campaignService:RequestService,private token : TokenStorageService){}
   ngOnInit(): void {
@@ -42,10 +43,13 @@ export class SendRequestComponent implements OnInit {
    this.campaignService.createCampaign(subject,description,id_card,user_id).subscribe(
         (response)=>{
             console.log(response);
+            this.messageService.add({severity:'success', summary:'Request is successfully sent', detail:'Via MessageService'});
              this.RequestForm.reset();
            },
            (err)=>{
              console.log(err)
+             this.messageService.add({severity:'error', summary: 'Cant send request', detail: 'Message Content'});
+
            }
    )
   }

@@ -54,10 +54,11 @@ export class ListOfCampaignsComponent implements OnInit ,OnDestroy {
         this.route.queryParamMap.subscribe(params=>{
           this.category = params.get('category');
           console.log("category",this.category);
-          this.filteredCollect = (this.category)?
-          this.Campaign.filter(p => p.category && p.category.name === this.category) : this.Campaign ; //p.category so even if the category is null (bich maya3mach error)
-          console.log("filteredCollect",this.filteredCollect);
+          // this.filteredCollect = (this.category)?
+          // this.Campaign.filter(p => p.category && p.category.name === this.category) : this.Campaign ; //p.category so even if the category is null (bich maya3mach error)
+          // console.log("filteredCollect",this.filteredCollect);
         });
+        
       //   this.route.queryParamMap.subscribe(params=>{
       //     this.category= params.get('category');
       //    console.log("category",this.category);
@@ -72,6 +73,13 @@ export class ListOfCampaignsComponent implements OnInit ,OnDestroy {
       }
     ); 
   }
+   
+filterhotelbycategorie(e:any){
+  this.campaignService.getCampaigns(this.page,this.limit).subscribe((res: any) => {
+    this.Campaign = res.data.filter((el:any)=> el.category && el.category._id == e.target.value);
+    console.log('reservation Hotel', this.Campaign);
+  })
+}
   
 getPage(event: any) {
   this.page = event;

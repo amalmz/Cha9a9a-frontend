@@ -47,7 +47,8 @@ const routes: Routes = [
   {
     path:'requests',
     component:RequestsComponent
-  }
+  },
+  { path: '**', redirectTo: 'users' }
 ]},
 {path:'creator',component:CreatorBoardComponent,
 canActivate: [AuthGuard],
@@ -61,7 +62,9 @@ data: {
   {
     path:'create',
     component:CreateCampaignComponent
-  }
+  },
+  { path: '**', redirectTo: 'MyCampaigns' },
+
 ]},
 {path:'donor',component:DonorBoardComponent,
 canActivate: [AuthGuard],
@@ -75,8 +78,11 @@ children:[{
 {
   path:'request',
   component:SendRequestComponent
-}
+},
+{ path: '**', redirectTo: 'participation' },
+
 ]
+
 },
 { path: '**', redirectTo: 'home' },
 

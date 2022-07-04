@@ -30,6 +30,7 @@ import { CategoriesComponent } from './categories/categories.component';
 import { FormsModule ,ReactiveFormsModule} from '@angular/forms';
 import { RequestsComponent } from './requests/requests.component';
 import {TabViewModule} from 'primeng/tabview';
+import {ImageModule} from 'primeng/image';
 
 @NgModule({
   declarations: [
@@ -64,7 +65,8 @@ import {TabViewModule} from 'primeng/tabview';
     InputTextareaModule, 
     FormsModule,
     ReactiveFormsModule,
-    TabViewModule 
+    TabViewModule ,
+    ImageModule
   
   ],
     providers: 

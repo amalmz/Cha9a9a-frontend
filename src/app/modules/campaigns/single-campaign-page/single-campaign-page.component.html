@@ -25,10 +25,10 @@
       <div class="col">
         <h1>{{campaign.name}}</h1>
         <p-progressBar [value]="value" [style]="{width: '23rem'}"></p-progressBar>
-        <h2>Objectif: <span>{{campaign.objective}}DT</span></h2>
-        <h2>collecté: <span>{{collected}} DT</span></h2>
+        <h2>Goal: <span>{{campaign.objective}}DT</span></h2>
+        <h2>Collected: <span>{{collected}} DT</span></h2>
         <div class="buttons">
-          <button class="btn" (click)="showDialog()">Partager</button>
+          <button class="btn" (click)="showDialog()">Share</button>
           <p-dialog header="Help by sharing" [(visible)]="display" [style]="{width: '50vw',height: '27em'}">
             <p-divider></p-divider>
             <div style="display: flex; justify-content: space-evenly;flex-wrap: wrap;">
@@ -80,7 +80,7 @@
             <div *ngIf="success">
              </div>
           <div *ngIf="failure"></div> -->
-          <button class="btn" (click)="showModalDialog()">Soutenir</button>
+          <button class="btn" (click)="showModalDialog()">Donate</button>
           <p-dialog header="Donate to: {{campaign.name}}" [(visible)]="displayModal" [modal]="true"
             [style]="{width: '50vw'}" [draggable]="false" [resizable]="false">
             <form [formGroup]="donationForm">
@@ -105,28 +105,30 @@
       </div>
     </div>
   </div>
+  <p-toast key="myKey1"></p-toast>
+  <p-toast key="myKey2"></p-toast>
   <div class="col2">
     <div class="center">
-      <h3>Description du Project</h3>
+      <h3>Description of the campaign</h3>
       <img class="image2" src="{{url+campaign.image}}">
       <p [ngClass]="{'limitTextHeight': isReadMore}" style="white-space: pre-wrap;">{{campaign.description}}</p>
       <a class="readmore" (click)="showText()">
         {{ isReadMore ? 'Read More': 'Read Less' }}
       </a>
       <div class="buttons">
-        <button class="btn1">Partager</button>
-        <button class="btn1">Soutenir</button>
+        <button class="btn1">Share</button>
+        <button class="btn1">Donate</button>
       </div>
     </div>
     <div class="col1">
-      <h4>Organisateur</h4><br>
+      <h4>Organizer</h4><br>
       <div class="row2">
         <img class="image3" src="../../../../assets/images/user1.jpg">
         <div class="col" *ngIf="users">
-          <h5>Organisator</h5>
-          <h5>{{users.name}} </h5>
+          <h5>Organizer</h5>
+          <h5>{{users.name}} {{users.lastname}}  </h5>
         </div>
-        <button (click)="showBasicDialog()" class="btn2">Contacter</button>
+        <button (click)="showBasicDialog()" class="btn2">Contact</button>
         <p-dialog header="Send a message" [(visible)]="displayBasic" [style]="{width: '40vw'}" [baseZIndex]="10000">
           <div style="display: flex; flex-direction: column;align-items: center;">
             <input style="margin-bottom: 1rem;width: 25rem;" placeholder="email" type="text" pInputText />
@@ -141,7 +143,7 @@
     <div class="col">
       <p-tabView>
         <p-tabPanel header="Comments" leftIcon="pi pi-comments">
-          <h4>Commentaires</h4>
+          <h4>Comments</h4>
           <form [formGroup]="CommentForm" (ngSubmit)="CommentForm.valid && addComment()">
             <span class="p-float-label">
               <textarea id="float-input" formControlName="text" rows="5" cols="81" pInputTextarea #comment></textarea>
@@ -198,7 +200,7 @@
       <h4>Participation</h4>
       <button pButton  (click)="showDialog1()"  type="button" icon="pi pi-star-fill" label="Top Donors" class="p-button-outlined p-button-warning p-button-raised"></button>
       <p-dialog header="Top Donors" [(visible)]="display1" [style]="{width: '26rem', height: '26rem'}">
-        <p-table [value]="Donations" [scrollable]="true" sortField="donateamount"  [sortOrder]="-1" scrollHeight="600px">
+        <p-table [value]="Donations" [scrollable]="true" sortField="donateamount"  [sortOrder]="-1" scrollHeight="100%">
           <ng-template pTemplate="body" let-Donations>
               <tr>
                   <td style="min-width:200px">
@@ -219,7 +221,7 @@
       </p-table>
     </p-dialog>
       <div class="row3">
-        <div style="display:flex ; margin:0.35rem" *ngFor="let d of Donations">
+        <div style="display:flex ; margin-top: 0.2rem;" *ngFor="let d of Donations">
           <img class="image4" src="../../../../assets/images/user1.jpg">
           <div class="col" style="margin-top: 0.3rem;">
             <h5 *ngIf="!d.anonymous" style="white-space: nowrap;">{{d.user_id?.name}} {{d.user_id?.lastname}}</h5>

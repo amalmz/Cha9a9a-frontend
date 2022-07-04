@@ -19,4 +19,7 @@ export class RequestService {
     console.log(formData)
     return this.http.post<Request>(`${this.apiServerUrl}/request/create`,formData)
   }
+  public getRequests(): Observable<Request[]> {
+    return this.http.get<Request[]>(`${this.apiServerUrl}/request/all`);
+  }
 }

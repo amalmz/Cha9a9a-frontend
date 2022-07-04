@@ -2,7 +2,7 @@
     <div class="content" >
       <form  *ngIf="!isSuccessful" [formGroup]="signUpForm" (ngSubmit)="signUpForm.valid && onSubmit()"> 
            <div class="h1container" style="display: flex; justify-content: center;">
-          <h1>Bienvenue</h1>
+          <h1>Welcome</h1>
         </div>
          <div class="inputcontainer">
             <!-- <select  id="whoareyou" formControlName="whoareyou" required>
@@ -16,13 +16,13 @@
           </div> -->
           <div class="row" >
           <div class="col" >
-          <input formControlName="name" type="text" placeholder="Nom" required>
+          <input formControlName="name" type="text" placeholder="Name" required>
           <div *ngIf="signUpForm.controls['name'].errors?.['required'] && (signUpForm.controls['name'].dirty || signUpForm.controls['name'].touched)" class="alert1" >
             name is required.
           </div>
         </div>
         <div class="col">
-         <input type="text"  formControlName="lastname"  placeholder="Prénom" required>
+         <input type="text"  formControlName="lastname"  placeholder="Last name" required>
          <div *ngIf="signUpForm.controls['lastname'].errors?.['required'] && (signUpForm.controls['lastname'].dirty || signUpForm.controls['lastname'].touched)" class="alert1" >
           last name is required.
         </div>
@@ -31,13 +31,13 @@
         </div>
         <div class="row">
           <div class="col">
-        <input formControlName="tel" type="text" placeholder="Téléphone" required>
+        <input formControlName="tel" type="text" placeholder="Phone number" required>
           <div *ngIf="signUpForm.controls['tel'].errors?.['required'] && (signUpForm.controls['tel'].dirty || signUpForm.controls['tel'].touched)" class="alert1" >
             phone number is required.
           </div>
         </div>
           <div class="col">
-          <input type="email" formControlName="email" placeholder="Adresse e-mail" required>
+          <input type="email" formControlName="email" placeholder="E-mail" required>
           <div *ngIf="signUpForm.controls['email'].errors?.['required'] && (signUpForm.controls['email'].dirty || signUpForm.controls['email'].touched)" class="alert1" >
             email is required.
           </div>
@@ -49,7 +49,7 @@
         <div class="row" >
           <div class="col" >
             <i class="icon" style="position: absolute;" [class]="show_eye ? 'pi pi-eye' : 'pi pi-eye-slash'" (click)="showPassword()"></i>
-          <input formControlName="password" type="password" placeholder="Mot de passe" [type]="show_button ? 'text' : 'password'" required> 
+          <input formControlName="password" type="password" placeholder="Password" [type]="show_button ? 'text' : 'password'" required> 
           <div *ngIf="signUpForm.controls['password'].errors?.['required'] && (signUpForm.controls['password'].dirty || signUpForm.controls['password'].touched)" class="alert1" >
             password is required.
           </div>
@@ -59,7 +59,7 @@
         </div>
           <div class="col">
             <i class="icon" style="position: absolute;" [class]="show_eye ? 'pi pi-eye' : 'pi pi-eye-slash'" (click)="showPassword()"></i>
-          <input  type="password" formControlName="confirmPassword" placeholder="répéter Mot de passe" [type]="show_button ? 'text' : 'password'" required>
+          <input  type="password" formControlName="confirmPassword" placeholder="Repeat password" [type]="show_button ? 'text' : 'password'" required>
           <div *ngIf="signUpForm.controls['confirmPassword'].errors?.['required'] && (signUpForm.controls['confirmPassword'].dirty || signUpForm.controls['confirmPassword'].touched)" class="alert1" >
             confirm Password is required.
           </div>
@@ -70,13 +70,13 @@
         </div>
         </div>
         <div class="lab1" style="display: flex; justify-content: center;padding: 2rem;">
-          <label class="containercheck" >J'accepte la politique de confidentialité
+          <label class="containercheck" >I accept the privacy policy
              <input type="checkbox" formControlName="accept" >
              <span class="checkmark"></span>
           </label>
          </div>
         <div class="btn1">
-          <button  type="submit" [disabled]="!signUpForm.valid" class="btn">Créez votre compte</button>
+          <button  type="submit" [disabled]="!signUpForm.valid" class="btn">Create your account</button>
          <div class="alert alert-warning" role="alert" *ngIf="isSignUpFailed">
           {{ errorMessage }}
           </div>

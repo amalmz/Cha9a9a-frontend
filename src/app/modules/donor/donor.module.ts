@@ -9,6 +9,7 @@ import { SendRequestComponent } from './send-request/send-request.component';
 import {ToastModule} from 'primeng/toast';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {InputTextModule} from 'primeng/inputtext';
+import {InputTextareaModule} from 'primeng/inputtextarea';
 
 
 
@@ -27,7 +28,8 @@ import {InputTextModule} from 'primeng/inputtext';
     FormsModule,
     ReactiveFormsModule,
     ToastModule,
-    InputTextModule
+    InputTextModule,
+    InputTextareaModule
   ]
 })
 export class DonorModule { }

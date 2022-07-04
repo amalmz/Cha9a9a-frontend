@@ -98,18 +98,17 @@ export class SingleCampaignPageComponent implements OnInit {
       console.log("this is the campaign comments",this.Comments);
       this.donations = this.campaign.donations; 
       console.log("this is the donations",this.donations);
-      let interval = setInterval(() => {
-        this.value = Math.round((this.collected / this.campaign.objective)*100);
-            clearInterval(interval);
-    }, 2000);
-
-       this.Donations = this.donations.filter((obj:any) => {
+      this.Donations = this.donations.filter((obj:any) => {
         if(obj.status === true){
           this.collected +=  obj.donateamount
           this.anonymous = obj.anonymous
         }
        return obj.status === true;
       });
+      let interval = setInterval(() => {
+        this.value = Math.round((this.collected / this.campaign.objective)*100);
+            clearInterval(interval);
+    }, 2000);
        console.log("this is the donations if it's true",this.Donations);
        console.log("collected",this.collected);
 
@@ -245,15 +244,16 @@ makePayment(amount: any) {
       console.log(data);
       if (data.data === "success") {
         this.success = true;
+        this.messageService.add({key: 'myKey1', severity:'success', summary: 'The donation transferred successfully', detail: 'Detail Text'});
         this.donationService.donationStatus(this.DonorId).subscribe((res:any)=>{
             console.log(res);
             this.ngOnInit();
           },
           (error: any) => {
             alert(error.message);
+
           }        
         )
-        this.messageService.add({key: 'myKey1', severity:'success', summary: 'The donation transferred successfully', detail: 'Detail Text'});
       }
       else {
         this.failure = true

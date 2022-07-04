@@ -87,9 +87,11 @@
         id="name"
         formControlName="name"
         [(ngModel)]="category.name"
+        required
         autofocus
       />
- 
+      <small class="p-invalid" *ngIf="submitted && !category.name"
+        >Name is required.</small>
      </form>
     </div>
 

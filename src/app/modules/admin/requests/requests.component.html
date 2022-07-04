@@ -48,6 +48,54 @@
         <p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
     </p-tabPanel>
     <p-tabPanel header="User request">
-        Content 2
+        <p-toast></p-toast>
+        <div class="card" >
+            <p-table #dt [value]="Requests" [rows]="5" [paginator]="true" [globalFilterFields]="['user_id.name']" responsiveLayout="scroll"
+                [(selection)]="selectedCampaign" [rowHover]="true" dataKey="id"
+                currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
+                <ng-template pTemplate="caption">
+                    <div class="flex">
+                        <span class="p-input-icon-left ml-auto">
+                            <i class="pi pi-search"></i>
+                            <input pInputText type="text" (input)="dt.filterGlobal(getEventValue($event), 'contains')" placeholder="Search keyword" />
+                        </span>
+                    </div>
+                    </ng-template>
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th pSortableColumn="user_id.name">Name <p-sortIcon field="user_id.name"></p-sortIcon></th>
+                        <th pSortableColumn="user_id.lastname">Goal <p-sortIcon field="user_id.lastname"></p-sortIcon></th>
+                        <th pSortableColumn="subject">Subject <p-sortIcon field="subject"></p-sortIcon></th>
+                        <th pSortableColumn="description">Description <p-sortIcon field="description"></p-sortIcon></th>
+                        <th>ID Card</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-Request>
+                    <tr>
+                        <td>{{Request.user_id?.name}}</td>
+                        <td>{{Request.user_id?.lastname}}</td>
+                        <td>{{Request.subject}}</td>
+                        <td>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout</td>
+                         <td>
+                        <p-image src="{{url+Request.id_card}}" alt="Image" width="100" [preview]="true"></p-image>
+                         </td>
+                        <td>
+                            <button pButton type="button" label="Accept" class="p-button-success"  (click)="UpgradeUser(Request)"></button>
+                        </td>
+                        <td>
+                            <button pButton type="button" label="Reject" class="p-button-danger"></button>
+                        </td>
+                        </tr>
+                </ng-template>
+                <ng-template pTemplate="summary">
+                    <div class="flex align-items-center justify-content-between">
+                        In total there are {{Requests ? Requests.length : 0 }} Requests.
+                    </div>
+                </ng-template>
+            </p-table>
+        </div>
+        <p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
     </p-tabPanel>
 </p-tabView>

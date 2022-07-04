@@ -66,10 +66,13 @@ export class CreateCampaignComponent implements OnInit {
    this.campaignService.createCampaign(name,objective,category,description,image,user_id).subscribe(
         (response)=>{
             console.log(response);
+             this.messageService.add({severity:'success', summary:'Campaign is successfully created', detail:'Via MessageService'});
              this.CampaignForm.reset();
            },
            (err)=>{
              console.log(err)
+             this.messageService.add({severity:'error', summary: 'Error has occurred', detail: 'Message Content'});
+
            }
    )
   }
